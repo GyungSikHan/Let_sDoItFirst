@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 #include "Monster.h"
 #include<iostream>
 #include<string>
@@ -10,18 +10,18 @@ private:
     int health = 0;
     int attack = 0;
 public:
-    Slime(int level/*Ä³¸¯ÅÍ ·¹º§*/) {
+    Slime(int level/*ìºë¦­í„° ë ˆë²¨*/) {
         int RandomHelathBoost = rand() % 10 + 15;
         int RandomDamageBoost = rand() % 5 + 2;
         this->health = level * RandomHelathBoost;
         this->attack = level * RandomDamageBoost;
-        this->name = "½½¶óÀÓ";
+        this->name = "ìŠ¬ë¼ì„";
     }
     string getName() { return name; }
     int getHealth() { return health; }
     int getAttack() { return attack; }
     void takeDamage(int damage) { this->health -= damage; }
-    Item* dropItem(/*¾ÆÀÌÅÛ °ü·Ã ¸Å°³º¯¼ö*/) {
-        /*¾ÆÀÌÅÛ Á¾·ù¿¡ µû¸¥ ÇÔ¼ö*/
+    Item* dropItem(/*ì•„ì´í…œ ê´€ë ¨ ë§¤ê°œë³€ìˆ˜*/) {
+        /*ì•„ì´í…œ ì¢…ë¥˜ì— ë”°ë¥¸ í•¨ìˆ˜*/
     }
 };
