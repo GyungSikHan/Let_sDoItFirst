@@ -1,5 +1,5 @@
 #pragma once
-#incluide "Monster.h"
+#include "Monster.h"
 #include<iostream>
 #include<string>
 
@@ -10,8 +10,10 @@ private:
     int attack = 0;
 public:
     Slime(int level) {
-        this->health = level * 24;
-        this->attack = level * 5;
+        int RandomHelathBoost = rand() % 10 + 15;
+        int RandomDamageBoost = rand() % 5 + 2;
+        this->health = level * RandomHelathBoost;
+        this->attack = level * RandomDamageBoost;
         this->name = "ΩΩ∂Û¿”";
     }
     string getName() { return name; }

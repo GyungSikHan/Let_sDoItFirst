@@ -8,9 +8,11 @@ private:
     int health = 0;
     int attack = 0;
 public:
-    Orc(int level) {
-        this->health = level * 26;
-        this->attack = level * 7;
+    Orc(int level) { 
+        int RandomHelathBoost = rand() % 10 + 20;
+        int RandomDamageBoost = rand() % 5 + 5;
+        this->health = level * RandomHelathBoost;
+        this->attack = level * RandomDamageBoost;
         this->name = "ø¿≈©";
     }
     string getName() { return name; }

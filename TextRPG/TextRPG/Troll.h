@@ -1,5 +1,5 @@
 #pragma once
-#incluide "Monster.h"
+#include "Monster.h"
 #include<iostream>
 #include<string>
 
@@ -10,8 +10,10 @@ private:
     int attack = 0;
 public:
     Troll(int level) {
-        this->health = level * 28;
-        this->attack = level * 9;
+        int RandomHelathBoost = rand() % 10 + 25;
+        int RandomDamageBoost = rand() % 5 + 7;
+        this->health = level * RandomHelathBoost;
+        this->attack = level * RandomDamageBoost;
         this->name = "Æ®·Ñ";
     }
     string getName() { return name; }
