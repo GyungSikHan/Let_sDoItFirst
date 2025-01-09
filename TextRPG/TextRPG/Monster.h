@@ -8,5 +8,5 @@ public:
     virtual int getHealth() = 0;
     virtual int getAttack() = 0;
     virtual void takeDamge(int damage) = 0;
-    virtual Item* dropItem();
+    virtual Item* dropItem() = 0;
 };
