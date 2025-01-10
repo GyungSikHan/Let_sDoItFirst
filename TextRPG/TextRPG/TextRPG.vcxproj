@@ -130,6 +130,7 @@
     <ClCompile Include="AttackBoost.cpp" />
     <ClCompile Include="BossMonster.cpp" />
     <ClCompile Include="Character.cpp" />
+    <ClCompile Include="GameMGR.cpp" />
     <ClCompile Include="Goblin.cpp" />
     <ClCompile Include="HealthPotion.cpp" />
     <ClCompile Include="Orc.cpp" />
@@ -142,6 +143,7 @@
     <ClInclude Include="AttackBoost.h" />
     <ClInclude Include="BossMonster.h" />
     <ClInclude Include="Character.h" />
+    <ClInclude Include="GameMGR.h" />
     <ClInclude Include="Golbin.h" />
     <ClInclude Include="HealthPotion.h" />
     <ClInclude Include="Item.h" />

@@ -23,5 +23,6 @@ public:
     void takeDamage(int damage) { this->health -= damage; }
     Item* dropItem(/*아이템 관련 매개변수*/) {
         /*아이템 종류에 따른 함수*/
+        return nullptr;
     }
 };
