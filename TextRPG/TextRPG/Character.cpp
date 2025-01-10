@@ -40,7 +40,7 @@ void Character::displayStatus()
 	
 	for (int i = 0; i < inventory.size(); i++)
 	{
-		cout << "  " << i + 1 << ". " << inventory[i]/*->getName()*/ << endl;
+		cout << "  " << i + 1 << ". " << inventory[i]->getName() << endl;
 	}
 
 	cout << "-----" << endl;
@@ -67,7 +67,7 @@ void Character::levelUp()
 
 void Character::useItem(int _index)
 {
-	/*inventory[_index]->use();*/
+	inventory[_index]->use();
 
 	inventory.erase(inventory.begin() + _index);
 }

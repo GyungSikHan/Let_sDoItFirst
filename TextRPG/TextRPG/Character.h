@@ -2,7 +2,7 @@
 #include <string>
 #include <vector>
 
-//#include "Item.h"
+#include "Item.h"
 
 using namespace std;
 
@@ -40,7 +40,6 @@ private:
 	int experience = 0;
 	int gold = 0;
 
-	//vector<Item*> inventory;
-	vector<string> inventory = {"item", "itemm", "itemmm"};
+	vector<Item*> inventory;
 };
 
