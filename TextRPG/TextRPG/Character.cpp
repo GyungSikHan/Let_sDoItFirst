@@ -89,7 +89,7 @@ void Character::popItem(int _index)
 
 void Character::useItem(int _index)
 {
-	inventory[_index]->use();
+	inventory[_index]->use(this);
 	popItem(_index);
 }
 
