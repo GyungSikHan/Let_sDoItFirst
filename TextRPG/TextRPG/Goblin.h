@@ -1,7 +1,7 @@
 ﻿#pragma once
 #include "Monster.h"
-#include<iostream>
-#include<string>
+#include <iostream>
+#include <string>
 
 using namespace std;
 class Goblin : public Monster {
@@ -20,8 +20,6 @@ public:
     string getName() { return name; }
     int getHealth() { return health; }
     int getAttack() { return attack; }
-    void takeDamage(int damage) { this->health -= damage; }
-    Item* dropItem(/*아이템 관련 매개변수*/) {
-        /*아이템 종류에 따른 함수*/
-    }
+    void takeDamage(int damage);
+    Item* dropItem();
 };

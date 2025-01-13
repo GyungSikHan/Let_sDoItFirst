@@ -6,7 +6,7 @@
 using namespace std;
 class Troll : public Monster {
 private:
-    string name;
+    string name = "NULL";
     int health = 0;
     int attack = 0;
 public:
@@ -20,9 +20,6 @@ public:
     string getName() { return name; }
     int getHealth() { return health; }
     int getAttack() { return attack; }
-    void takeDamage(int damage) { this->health -= damage; }
-    Item* dropItem(/*아이템 관련 매개변수*/) {
-        /*아이템 종류에 따른 함수*/
-        return nullptr;
-    }
+    void takeDamage(int damage);
+    Item* dropItem();
 };
