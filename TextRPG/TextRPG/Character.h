@@ -12,7 +12,11 @@ public:
 	static Character* getInstance(string _name = "");
 
 	void displayStatus();
+	void displayInventory();
+	void checkLevelUp();
 	void levelUp();
+	void pushItem(Item* _item);
+	void popItem(int _index);
 	void useItem(int _index);
 	void visitShop();
 
@@ -21,7 +25,8 @@ public:
 	inline const int getHealth() { return health; }
 	inline const int getMaxHealth() { return maxHealth; }
 	inline const int getAttack() { return attack; }
-	inline const int getExperience() { return experience; }
+	inline const float getExperience() { return experience; }
+	inline const float getMaxExperience() { return maxExperience; }
 	inline const int getGold() { return gold; }
 	inline const vector<Item*> getInventory() { return inventory; }
 
@@ -49,6 +54,16 @@ public:
 		gold = _gold;
 	}
 
+	inline bool isDeath()
+	{
+		if (health <= 0)
+		{
+			return true;
+		}
+
+		return false;
+	}
+
 private:
 	Character(string _name);
 	~Character();
@@ -62,9 +77,9 @@ private:
 	int health = 100;
 	int maxHealth = 100;
 	int attack = 5;
-	int experience = 0;
-	int maxExperience = 100;
-	int gold = 0;
+	float experience = 0.0f;
+	float maxExperience = 100.0f;
+	int gold = 10;
 
 	vector<Item*> inventory;
 };
