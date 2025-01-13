@@ -1,16 +1,15 @@
 ﻿#include "GameMGR.h"
-
-#include <ppltasks.h>
-
 #include "Goblin.h"
 #include "Orc.h"
 #include "Shop.h"
+#include "Slime.h"
 #include "Troll.h"
 
 GameMGR* GameMGR::instance = nullptr;
 
 GameMGR::GameMGR()
 {
+    Init();
 }
 
 GameMGR::~GameMGR()
@@ -38,7 +37,7 @@ GameMGR* GameMGR::GetInstance()
 
 Monster* GameMGR::GenerateMonster(int level)
 {
-    int ran = (int)(rand() % 3);
+    int ran = (int)(rand() % 4);
     Monster* monster{};
     switch (ran)
     {
@@ -54,6 +53,8 @@ Monster* GameMGR::GenerateMonster(int level)
         monster = new Troll(level);
         return monster;
         break;
+    case 3:
+        monster = new Slime(level);
     default:
         ran = (int)(rand() % 3);
         break;
@@ -70,13 +71,13 @@ BossMonster* GameMGR::GenerateBossMonster(int level)
     return nullptr;
 }
 
-void GameMGR::Battle(Character* player)
+void GameMGR::Battle()
 {
     Monster* monster{};
-    //if (Character::getInstance()->getLevel() >= 10)
-    //    monster = GenerateMonster();
-    //else
-    //    monster = GenerateMonster();
+    if (player->getLevel() >= 10)
+        monster = GenerateMonster(player->getLevel());
+    else
+        monster = GenerateMonster(player->getLevel());
 
     if(monster == nullptr)
     {
@@ -87,38 +88,36 @@ void GameMGR::Battle(Character* player)
 
     //TODO 전투 및 결과
     bool bMonsterDead{};
-
+    bool bRun{};
 	int index{};
-    while (bMonsterDead == false && bPlayerDead == false)
+    while (bMonsterDead == false && bPlayerDead == false && bRun == false)
     {
+        //TODO Plyaer나 monster 죽었는지 판단하는 함수 추가해넣기
 		cout << "1. 공격 2. 인벤토리 3. 도망가기 ";
     	cin >> index;
 	    switch (index)
 	    {
-	    case 1: 
-	        monster->takeDamage(Character::getInstance()->getAttack());
-            bMonsterDead = IsMonsterDead(monster);
+	    case 1:
+            //0이면 character, 1이면 monster
+            Attack(monster, 0);
 	    	break;
 	    case 2:
-	        DisplayInventory(Character::getInstance());
+            //TODO 
+	        DisplayInventory();
 	        //TODO 아이템 선택 후 사용
 			break;
-	    case 3:
-	        cout << Character::getInstance()->getName() << "이 도망갑니다" << endl;
+	    case 3://TODO 뺼수도 있음
+            bRun = true;
+	        cout << player->getName() << "이 도망갑니다" << endl;
 	        break;
 	    }
-
-        if(index == 3)
-        {
-            cout << monster->getName() << "이 공격합니다!!" << endl;
-            cout << monster->getAttack() << "의 데미지를 입었습니다!!!" << endl;
-            //TODO 플레이어 데미지 입음
-            bPlayerDead = IsPlayerDead();
-        }
+        if(index != 3)
+	        Attack(monster, 1);
+        
     }
 }
 
-void GameMGR::VisitShop(Character* player)
+void GameMGR::VisitShop()
 {
     
     shop->displayItems();
@@ -132,10 +131,12 @@ void GameMGR::VisitShop(Character* player)
         switch (index)
         {
         case 1:
+            //TODO 골드에 따라 구매 가능한지 판단
 	        shop->buyItem(index);
             break;
         case 2:
-            //TODO 아이템 판매
+            //TODO 아이템 있는지 판단 후 판매
+            shop->sellItem(index);
             break;
         case 3:
             cout << "상점에서 나갑니다" << endl;
@@ -145,11 +146,10 @@ void GameMGR::VisitShop(Character* player)
 
 }
 
-void GameMGR::DisplayInventory(Character* player)
+void GameMGR::DisplayInventory()
 {
-    //character에 함수로 구현해도 될듯..?
-    //vector<Item*> 반환하는 Get함수 필요
-    for (Item* item : player->GetItems()
+    //TODO player에서 구현 예정
+    for (Item* item : player->getInventory())
     {
         cout << item->getName() << "이 " << item->getItemIdx() << "개 있습니다" << endl;
     }
@@ -170,7 +170,7 @@ void GameMGR::StartGame()
 
     switch (temp)
     {
-        case 1://TODO 게임시작
+        case 1:
             InitCharacter();
             Play();
             break;
@@ -187,20 +187,13 @@ void GameMGR::InitCharacter()
     cin>>name;
     if (name.size() > 10)
         name.erase(10, name.size());
-    Character::getInstance(name);
-    //TODO  Player 체력, 레벨, 경험치, 공격력, 골드 셋팅
+    player = Character::getInstance(name);
+    //TODO player->setName(name);
 }
 
 void GameMGR::PrintCharacterInfo()
 {
-    cout<<"------------ Player Info ------------"<<endl;
-    cout<<"이름 : "<<Character::getInstance()->getName() <<endl;
-    cout<<"Level : "<<Character::getInstance()->getLevel()<<endl;
-    cout<<"HP : "<<Character::getInstance()->getHealth()<<"/"<<Character::getInstance()->getMaxHealth()<<endl;
-    cout<<"Power : " << Character::getInstance()->getAttack()<<endl;
-    //cout<<"EXP : "<<Character::getInstance().getexp()<<"/"<<Character::getInstance().getMaxExp<<endl;//추가 예정
-    
-    
+    player->displayStatus();
 }
 
 void GameMGR::Play()
@@ -213,16 +206,16 @@ void GameMGR::Play()
         switch(data)
         {
             case 1:
-                //Battle();
+                Battle();
                 break;
             case 2:
-               // VisitShop();
+                VisitShop();
                 break;
             case 3:
-                //PrintCharacterInfo();
+                PrintCharacterInfo();
                 break;
             case 4:
-                //DisplayInventory();
+                DisplayInventory();
                 break;
         case 5://TODO 잡은 몬스터 갯수
             break;
@@ -233,12 +226,34 @@ void GameMGR::Play()
     }
 }
 
+void GameMGR::Attack(Monster* monster, int index)
+{
+	if (index == 0)
+	{
+	    cout << player->getName() << "이 공격합니다!!!" << endl;
+        cout << "공격력 : " << player->getAttack() << endl;
+        monster->takeDamage(player->getAttack());
+        cout << monster->getName() << "이 공격당합니다!!" << endl;
+		cout << "남은체력 : " << monster->getHealth() << endl;
+	}
+    else
+    {
+        cout << monster->getName() << "이 공격합니다!!!" << endl;
+        cout << "공격력 : " << monster->getAttack() << endl;
+       // player->takeDamage(monster->getAttack());
+        cout << player->getName() << "이 공격당합니다!!" << endl;
+        cout << "남은체력 : " << player->getHealth() << endl;
+    }
+}
+
 bool GameMGR::IsMonsterDead(Monster* monster)
 {
+    //TODO monster에서 함수 구현예정
     return monster->getHealth() <= 0;
 }
 
 bool GameMGR::IsPlayerDead()
 {
-    return Character::getInstance()->getHealth() <= 0;
+    //TODO player에서 함수 만들예정
+    return player->getHealth() <= 0;
 }
