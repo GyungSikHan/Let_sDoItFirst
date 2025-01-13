@@ -17,9 +17,9 @@ public:
 
 	int getAttackIncrease(){return attackIncrease;};
 private:
-	string name = "AttackBoost (공격력 +10)";
-	int attackIncrease = 10;
-	int price = 15;
+	string name = "AttackBoost (공격력 +7)";
+	int attackIncrease = 7;
+	int price = 170;
 	int itemIdx = 2;
 };
 

@@ -32,7 +32,7 @@ void Shop::sellItem(int index, Character* player)
 			int sellPrice = item->getPrice() - minusPrice;
 			player->setGold(player->getGold() + sellPrice);
 			cout << item->getName() << "을 판매했습니다! / 현재 골드 : " << player->getGold() << endl;
-			player->popItem(index); //Item함수의 getItemIndex()활용해서 인덱스 일치하면 제거하는 방식으로 하면 될 것 같아요
+			//player->popItem(index); //Item함수의 getItemIndex()활용해서 인덱스 일치하면 제거하는 방식으로 하면 될 것 같아요
 			break;
 		}
 	}

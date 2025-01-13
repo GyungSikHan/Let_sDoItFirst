@@ -17,9 +17,9 @@ public:
 
 	int getHealthRestore(){return healthRestore;};
 private:
-	string name = "HealthPotion (체력 +50)";
-	int healthRestore = 50;
-	int price = 10;
+	string name = "HealthPotion (체력 +70)";
+	int healthRestore = 70;
+	int price = 130;
 	int itemIdx = 1;
 };
 
