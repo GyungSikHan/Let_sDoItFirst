@@ -11,14 +11,10 @@ private:
     int health = 0;
     int attack = 0;
 public:
-    BossMonster(int level) {
-        setName();
-        setAttack(level, 0);
-        setHealth(level, 0);
-    }
-    void setName();
-    void setAttack(int level, int random);
-    void setHealth(int level, int random);
+    BossMonster(int level);
+    void setName(string name);
+    void setAttack(int health);
+    void setHealth(int health);
     string getName() { return name; }
     int getHealth() { return health; }
     int getAttack() { return attack; }

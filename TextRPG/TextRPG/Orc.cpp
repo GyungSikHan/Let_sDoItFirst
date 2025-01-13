@@ -7,8 +7,25 @@
 
 using namespace std;
 
+Orc::Orc(int level) {
+	int RandomHelathBoost = rand() % 10 + 20;
+	int RandomDamageBoost = rand() % 5 + 5;
+	int tempHealth = level * RandomHelathBoost;
+	int tempAttack = level * RandomDamageBoost;
+	string tempName = "오크";
+	setName(tempName);
+	setAttack(tempHealth);
+	setHealth(tempAttack);
+}
+
+Orc::~Orc() {
+
+}
+
 void Orc::takeDamage(int damage) {
-	this->health -= damage;
+	int tHealth = getHealth() - damage;
+	if (tHealth < 0) tHealth = 0;
+	setHealth(tHealth);
 }
 
 vector<Item*> Orc::dropItem() {
@@ -26,16 +43,16 @@ vector<Item*> Orc::dropItem() {
 	return DroppedItem;
 }
 
-void Orc::setName() {
-	this-> name = "오크";
+void Orc::setName(string name) {
+	this->name = name;
 }
 
-void Orc::setAttack(int level, int random) {
-	this-> attack = level * random;
+void Orc::setAttack(int attack) {
+	this->attack = attack;
 }
 
-void Orc::setHealth(int level, int random) {
-	this-> health = level * random;
+void Orc::setHealth(int health) {
+	this->health = health;
 }
 
 int Orc::dropGold() {

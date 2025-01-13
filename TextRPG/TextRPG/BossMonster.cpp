@@ -7,8 +7,23 @@
 
 using namespace std;
 
+BossMonster::BossMonster(int level) {
+	int tempHealth = 520;
+	int tempAttack = 60;
+	string tempName = "µå·¡°ï";
+	setName(tempName);
+	setAttack(tempHealth);
+	setHealth(tempAttack);
+}
+
+BossMonster::~BossMonster() {
+
+}
+
 void BossMonster::takeDamage(int damage) {
-	this->health -= damage;
+	int tHealth = getHealth() - damage;
+	if (tHealth < 0) tHealth = 0;
+	setHealth(tHealth);
 }
 
 vector<Item*> BossMonster::dropItem() {
@@ -26,16 +41,16 @@ vector<Item*> BossMonster::dropItem() {
 	return DroppedItem;
 }
 
-void BossMonster::setName() {
-	this-> name = "µå·¡°ï";
+void BossMonster::setName(string name) {
+	this->name = name;
 }
 
-void BossMonster::setAttack(int level, int random) {
-	this->attack = 520;
+void BossMonster::setAttack(int attack) {
+	this->attack = attack;
 }
 
-void BossMonster::setHealth(int level, int random) {
-	this-> health = 60;
+void BossMonster::setHealth(int health) {
+	this->health = health;
 }
 
 int BossMonster::dropGold() {

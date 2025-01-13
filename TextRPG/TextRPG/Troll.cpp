@@ -7,8 +7,25 @@
 
 using namespace std;
 
+Troll::Troll(int level) {
+	int RandomHelathBoost = rand() % 10 + 25;
+	int RandomDamageBoost = rand() % 5 + 7;
+	int tempHealth = level * RandomHelathBoost;
+	int tempAttack = level * RandomDamageBoost;
+	string tempName = "트롤";
+	setName(tempName);
+	setAttack(tempHealth);
+	setHealth(tempAttack);
+}
+
+Troll::~Troll() {
+
+}
+
 void Troll::takeDamage(int damage) {
-	this->health -= damage;
+	int tHealth = getHealth() - damage;
+	if (tHealth < 0) tHealth = 0;
+	setHealth(tHealth);
 }
 
 vector<Item*> Troll::dropItem() {
@@ -26,16 +43,16 @@ vector<Item*> Troll::dropItem() {
 	return DroppedItem;
 }
 
-void Troll::setName() {
-	this-> name = "트롤";
+void Troll::setName(string name) {
+	this-> name = name;
 }
 
-void Troll::setAttack(int level, int random) {
-	this-> attack = level * random;
+void Troll::setAttack(int attack) {
+	this-> attack = attack;
 }
 
-void Troll::setHealth(int level, int random) {
-	this-> health = level * random;
+void Troll::setHealth(int health) {
+	this-> health = health;
 }
 
 int Troll::dropGold() {

@@ -7,8 +7,25 @@
 
 using namespace std;
 
+Slime::Slime(int level) {
+	int RandomHelathBoost = rand() % 10 + 15;
+	int RandomDamageBoost = rand() % 5 + 2;
+	int tempHealth = level * RandomHelathBoost;
+	int tempAttack = level * RandomDamageBoost;
+	string tempName = "슬라임";
+	setName(tempName);
+	setAttack(tempHealth);
+	setHealth(tempAttack);
+}
+
+Slime::~Slime() {
+
+}
+
 void Slime::takeDamage(int damage) {
-	this->health -= damage;
+	int tHealth = getHealth() - damage;
+	if (tHealth < 0) tHealth = 0;
+	setHealth(tHealth);
 }
 
 vector<Item*> Slime::dropItem() {
@@ -26,16 +43,16 @@ vector<Item*> Slime::dropItem() {
 	return DroppedItem;
 }
 
-void Slime::setName() {
-	this-> name = "슬라임";
+void Slime::setName(string name) {
+	this->name = name;
 }
 
-void Slime::setAttack(int level, int random) {
-	this-> attack = level * random;
+void Slime::setAttack(int attack) {
+	this->attack = attack;
 }
 
-void Slime::setHealth(int level, int random) {
-	this-> health = level * random;
+void Slime::setHealth(int health) {
+	this->health = health;
 }
 
 int Slime::dropGold() {

@@ -7,8 +7,25 @@
 
 using namespace std;
 
+Goblin::Goblin(int level) {
+	int RandomHelathBoost = rand() % 10 + 15;
+	int RandomDamageBoost = rand() % 5 + 5;
+	int tempHealth = level * RandomHelathBoost;
+	int tempAttack = level * RandomDamageBoost;
+	string tempName = "고블린";
+	setName(tempName);
+	setAttack(tempHealth);
+	setHealth(tempAttack);
+}
+
+Goblin::~Goblin() {
+
+}
+
 void Goblin::takeDamage(int damage) {
-	this->health -= damage;
+	int tHealth = getHealth() - damage;
+	if (tHealth < 0) tHealth = 0;
+	setHealth(tHealth);
 }
 
 vector<Item*> Goblin::dropItem() {
@@ -26,16 +43,16 @@ vector<Item*> Goblin::dropItem() {
 	return DroppedItem;
 }
 
-void Goblin::setName() {
-	this-> name = "고블린";
+void Goblin::setName(string name) {
+	this->name = name;
 }
 
-void Goblin::setAttack(int level, int random) {
-	this-> attack = level * random;
+void Goblin::setAttack(int attack) {
+	this->attack = attack;
 }
 
-void Goblin::setHealth(int level, int random) {
-	this-> health = level * random;
+void Goblin::setHealth(int health) {
+	this->health = health;
 }
 
 int Goblin::dropGold() {
