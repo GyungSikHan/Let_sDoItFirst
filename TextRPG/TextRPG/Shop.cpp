@@ -1,39 +1,39 @@
 #include "Shop.h"
 #include <iostream>
 #include "Item.h"
+#include "Character.h"
 using namespace std;
 
 void Shop::displayItems()
 {
 	cout << "상점에 오신 것을 환영합니다!" <<endl;
-	cout << "구매 가능한 아이템 :" <<endl;
+	cout << "구매 및 판매 가능한 아이템 :" <<endl;
 	for (auto& item : avaliableItems)
 	{
-		cout << item->getItemIdx() << ". " << item->getName() << " : " << item->getPrice() << " 골드" << endl;
+		int minusPrice = item->getPrice() * sellPriceRatio;
+		int sellPrice = item->getPrice() - minusPrice;
+		cout << item->getItemIdx() << ". " << item->getName() << " / 가격 : " << item->getPrice() << " 골드" <<" / 판매가 : " << sellPrice << endl;
 	}
 }
 
-void Shop::buyItem(int index/*, Character* player*/)
+void Shop::buyItem(int index, Character* player)
 {
-	// TODO: 플레이어 골드 감소
-	//player->gold -= avaliableItems[index].getPrice();
-	// TODO: 플레이어 인벤토리에 아이템 추가
-	//player->inventory.push_back(avaliableItems[index]);
+	player->setGold(player->getGold() - avaliableItems[index]->getPrice());
+	player->pushItem(avaliableItems[index]);
 	cout << avaliableItems[index]->getName() << "을 구매했습니다!"<< endl;
 }
 
-void Shop::sellItem(int index/*, Character* player*/)
+void Shop::sellItem(int index, Character* player)
 {
-	// TODO: 플레이어 골드 증가
-	//player->gold += avaliableItems[index].getPrice();
-	// 플레이어 인벤토리에 아이템 제거
-	// Item* removeItem = nullptr;
-	// for(auto& item : player->inventory)
-	// {
-	//		if(item.getItemIdx == index) {
-	//			cout << removeItem->getName() << "을 판매했습니다!" << endl;
-	//			TODO: 플레이어 인벤토리에서(vector) 아이템 제거
-	//		}
-	// }
-	//
+	for (auto& item : avaliableItems)
+	{
+		if (item->getItemIdx() == index) {
+			int minusPrice = item->getPrice() * sellPriceRatio;
+			int sellPrice = item->getPrice() - minusPrice;
+			player->setGold(player->getGold() + sellPrice);
+			cout << item->getName() << "을 판매했습니다! / 현재 골드 : " << player->getGold() << endl;
+			player->popItem(index); //Item함수의 getItemIndex()활용해서 인덱스 일치하면 제거하는 방식으로 하면 될 것 같아요
+			break;
+		}
+	}
 }
