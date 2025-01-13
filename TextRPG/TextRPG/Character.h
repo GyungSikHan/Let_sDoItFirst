@@ -23,6 +23,31 @@ public:
 	inline const int getAttack() { return attack; }
 	inline const int getExperience() { return experience; }
 	inline const int getGold() { return gold; }
+	inline const vector<Item*> getInventory() { return inventory; }
+
+	inline void setName(string _name)
+	{
+		name = _name;
+	}
+	inline void setHealth(int _health)
+	{
+		if (health > maxHealth)
+		{
+			health = maxHealth;
+		}
+		else
+		{
+			health = _health;
+		}
+	}
+	inline void setAttack(int _attack)
+	{
+		attack = _attack;
+	}
+	inline void setGold(int _gold)
+	{
+		gold = _gold;
+	}
 
 private:
 	Character(string _name);
@@ -34,10 +59,11 @@ private:
 
 	string name;
 	int level = 1;
-	int health = 200;
-	int maxHealth = 200;
-	int attack = 30;
+	int health = 100;
+	int maxHealth = 100;
+	int attack = 5;
 	int experience = 0;
+	int maxExperience = 100;
 	int gold = 0;
 
 	vector<Item*> inventory;
