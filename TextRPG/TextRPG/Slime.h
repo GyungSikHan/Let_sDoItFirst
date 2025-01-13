@@ -2,6 +2,7 @@
 #include "Monster.h"
 #include <iostream>
 #include <string>
+#include <vector>
 
 using namespace std;
 class Slime : public Monster {
@@ -24,7 +25,7 @@ public:
     int getHealth() { return health; }
     int getAttack() { return attack; }
     void takeDamage(int damage);
-    Item* dropItem();
+    vector<Item*> dropItem();
     int dropGold();
     int dropEXP() { return 10; };
     bool isDead();
