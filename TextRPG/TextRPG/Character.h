@@ -48,7 +48,9 @@ public:
 	{
 		gold = _gold;
 	}
-
+	void pushItem(class Item* _item){
+		inventory.push_back(_item);
+	};
 private:
 	Character(string _name);
 	~Character();

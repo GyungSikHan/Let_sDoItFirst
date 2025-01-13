@@ -4,6 +4,9 @@
 #include "HealthPotion.h"
 #include "AttackBoost.h"
 
+class Character;
+
+
 class Shop
 {
 public:
@@ -13,10 +16,11 @@ public:
 	}
 
 	void displayItems();
-	void buyItem(int index/*, Character* player*/);
-	void sellItem(int index/*, Character* player*/);
+	void buyItem(int index, Character* player);
+	void sellItem(int index, Character* player);
 
 private:
 	vector<Item*> avaliableItems;
+	float sellPriceRatio = 0.6;
 };
 

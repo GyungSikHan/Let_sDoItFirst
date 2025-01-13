@@ -132,7 +132,7 @@ void GameMGR::VisitShop(Character* player)
         switch (index)
         {
         case 1:
-	        shop->buyItem(index);
+	       // shop->buyItem(index);
             break;
         case 2:
             //TODO 아이템 판매
@@ -149,10 +149,10 @@ void GameMGR::DisplayInventory(Character* player)
 {
     //character에 함수로 구현해도 될듯..?
     //vector<Item*> 반환하는 Get함수 필요
-    for (Item* item : player->GetItems()
-    {
-        cout << item->getName() << "이 " << item->getItemIdx() << "개 있습니다" << endl;
-    }
+   /* for (Item* item : player->GetItems()
+	{
+		cout << item->getName() << "이 " << item->getItemIdx() << "개 있습니다" << endl;
+	}*/
 }
 
 void GameMGR::StartGame()
@@ -161,6 +161,8 @@ void GameMGR::StartGame()
     int temp{};
     cout<<"Text 세계에 오신걸 환영합니다."<<endl;
     cout<<"1. 게임 시작     2. 게임종료"<<endl;
+    Shop aa;
+    aa.displayItems();
     while(temp != 1 && temp != 2)
     {
         cin>>temp;
