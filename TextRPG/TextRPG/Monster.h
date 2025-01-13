@@ -13,4 +13,5 @@ public:
     virtual void takeDamage(int damage) = 0;
     virtual Item* dropItem() = 0;
     virtual int dropGold() = 0;
+    virtual int dropEXP() = 0;
 };

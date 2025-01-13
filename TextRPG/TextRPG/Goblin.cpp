@@ -11,9 +11,13 @@ void Goblin::takeDamage(int damage) {
 }
 
 Item* Goblin::dropItem() {
-	int randomItem = rand() % 2;
-	if (randomItem == 0)return new HealthPotion();
-	else if (randomItem == 1)return new AttackBoost();
+	int ItemDropped = rand() % 10;
+	if (ItemDropped < 3) {
+		int randomItem = rand() % 100;
+		if (randomItem < 10)return new HealthPotion();
+		else if (10 <= randomItem && randomItem < 55)return new AttackBoost();
+		else return new HealthPotion();
+	}
 	return nullptr;
 }
 
@@ -30,6 +34,6 @@ void Goblin::setHealth(int level, int random) {
 }
 
 int Goblin::dropGold() {
-	int randomGold = rand() % 2;
+	int randomGold = rand() % 20 + 30;
 	return randomGold;
 }

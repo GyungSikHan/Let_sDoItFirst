@@ -12,11 +12,9 @@ private:
     int attack = 0;
 public:
     BossMonster(int level) {
-        int RandomHelathBoost = rand() % 15 + 30;
-        int RandomDamageBoost = rand() % 8 + 8;
         setName();
-        setAttack(level, RandomDamageBoost);
-        setHealth(level, RandomHelathBoost);
+        setAttack(level, 0);
+        setHealth(level, 0);
     }
     void setName();
     void setAttack(int level, int random);

@@ -11,9 +11,13 @@ void BossMonster::takeDamage(int damage) {
 }
 
 Item* BossMonster::dropItem() {
-	int randomItem = rand() % 2;
-	if (randomItem == 0)return new HealthPotion();
-	else if (randomItem == 1)return new AttackBoost();
+	int ItemDropped = rand() % 10;
+	if (ItemDropped < 3) {
+		int randomItem = rand() % 100;
+		if (randomItem < 10)return new HealthPotion();
+		else if (10 <= randomItem && randomItem < 55)return new AttackBoost();
+		else return new HealthPotion();
+	}
 	return nullptr;
 }
 
@@ -22,14 +26,14 @@ void BossMonster::setName() {
 }
 
 void BossMonster::setAttack(int level, int random) {
-	this-> attack = level * random;
+	this->attack = 520;
 }
 
 void BossMonster::setHealth(int level, int random) {
-	this-> health = level * random;
+	this-> health = 60;
 }
 
 int BossMonster::dropGold() {
-	int randomGold = rand() % 2;
+	int randomGold = rand() % 20 + 30;
 	return randomGold;
 }
