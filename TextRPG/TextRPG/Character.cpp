@@ -111,4 +111,9 @@ bool Character::isDeath()
 void Character::takeDamage(int _damage)
 {
 	this->health -= _damage;
+
+	if (this->health <= 0)
+	{
+		this->health = 0;
+	}
 }
