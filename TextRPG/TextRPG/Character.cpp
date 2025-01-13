@@ -4,11 +4,11 @@
 
 Character* Character::instance = nullptr;
 
-Character* Character::getInstance(string _name)
+Character* Character::getInstance()
 {
 	if (!instance)
 	{
-		instance = new Character(_name);
+		instance = new Character();
 	}
 	else
 	{
@@ -18,14 +18,12 @@ Character* Character::getInstance(string _name)
 	return instance;
 }
 
-Character::Character(string _name) : name(_name)
+Character::Character()
 {
-	
 }
 
 Character::~Character()
 {
-
 }
 
 void Character::displayStatus()

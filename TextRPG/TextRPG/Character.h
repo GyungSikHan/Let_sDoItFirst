@@ -9,7 +9,7 @@ using namespace std;
 class Character
 {
 public:
-	static Character* getInstance(string _name = "");
+	static Character* getInstance();
 
 	void displayStatus();
 	void displayInventory();
@@ -65,14 +65,14 @@ public:
 	}
 
 private:
-	Character(string _name);
+	Character();
 	~Character();
 	Character(const Character&) = delete;
 	Character& operator=(const Character&) = delete;
 
 	static Character* instance;
 
-	string name;
+	string name = "";
 	int level = 1;
 	int health = 100;
 	int maxHealth = 100;
