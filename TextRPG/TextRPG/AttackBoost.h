@@ -7,7 +7,7 @@ class AttackBoost : public Item
 {
 public:
 	string getName(){return name;};
-	void use(/*Character character*/);
+	void use(/*Character character*/){};
 	int getPrice(){return price;};
 	int getItemIdx(){return itemIdx;};
 

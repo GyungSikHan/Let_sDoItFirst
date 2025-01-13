@@ -27,7 +27,4 @@
     <ClInclude Include="Troll.h" />
     <ClInclude Include="GameMGR.h" />
   </ItemGroup>
-  <ItemGroup>
-    <None Include="TextRPG.aps" />
-  </ItemGroup>
 </Project>

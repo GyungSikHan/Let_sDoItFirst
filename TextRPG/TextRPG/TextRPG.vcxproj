@@ -153,9 +153,6 @@
     <ClInclude Include="Slime.h" />
     <ClInclude Include="Troll.h" />
   </ItemGroup>
-  <ItemGroup>
-    <None Include="TextRPG.aps" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
