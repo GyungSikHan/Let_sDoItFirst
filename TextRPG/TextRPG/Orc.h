@@ -26,5 +26,7 @@ public:
     int getAttack() { return attack; }
     void takeDamage(int damage);
     Item* dropItem();
+    int dropGold();
+    int dropEXP() { return 20; };
 };
 

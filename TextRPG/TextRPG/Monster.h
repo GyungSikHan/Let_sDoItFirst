@@ -12,5 +12,5 @@ public:
     virtual void setAttack(int level, int random) = 0;
     virtual void takeDamage(int damage) = 0;
     virtual Item* dropItem() = 0;
-    
+    virtual int dropGold() = 0;
 };

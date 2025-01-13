@@ -12,7 +12,7 @@ private:
 public:
     Goblin(int level/*캐릭터 레벨*/) {
         int RandomHelathBoost = rand() % 10 + 15;
-        int RandomDamageBoost = rand() % 6 + 5;
+        int RandomDamageBoost = rand() % 5 + 5;
         setName();
         setAttack(level, RandomDamageBoost);
         setHealth(level, RandomHelathBoost);
@@ -25,4 +25,6 @@ public:
     int getAttack() { return attack; }
     void takeDamage(int damage);
     Item* dropItem();
+    int dropGold();
+    int dropEXP() { return 15; };
 };

@@ -18,13 +18,18 @@ Item* Troll::dropItem() {
 }
 
 void Troll::setName() {
-	this->name = "슬라임";
+	this-> name = "트롤";
 }
 
 void Troll::setAttack(int level, int random) {
-	this->attack = level * random;
+	this-> attack = level * random;
 }
 
 void Troll::setHealth(int level, int random) {
-	this->health = level * random;
+	this-> health = level * random;
+}
+
+int Troll::dropGold() {
+	int randomGold = rand() % 2;
+	return randomGold;
 }

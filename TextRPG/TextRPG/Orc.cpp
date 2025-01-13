@@ -17,13 +17,18 @@ Item* Orc::dropItem() {
 }
 
 void Orc::setName() {
-	this->name = "µå·¡°ï";
+	this-> name = "¿ÀÅ©";
 }
 
 void Orc::setAttack(int level, int random) {
-	this->attack = level * random;
+	this-> attack = level * random;
 }
 
 void Orc::setHealth(int level, int random) {
-	this->health = level * random;
+	this-> health = level * random;
+}
+
+int Orc::dropGold() {
+	int randomGold = rand() % 2;
+	return randomGold;
 }

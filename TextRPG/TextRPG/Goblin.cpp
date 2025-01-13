@@ -18,13 +18,18 @@ Item* Goblin::dropItem() {
 }
 
 void Goblin::setName() {
-	this->name = "고블린";
+	this-> name = "고블린";
 }
 
 void Goblin::setAttack(int level, int random) {
-	this->attack = level * random;
+	this-> attack = level * random;
 }
 
 void Goblin::setHealth(int level, int random) {
-	this->health = level * random;
+	this-> health = level * random;
+}
+
+int Goblin::dropGold() {
+	int randomGold = rand() % 2;
+	return randomGold;
 }

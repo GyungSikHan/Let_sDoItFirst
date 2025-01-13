@@ -22,9 +22,14 @@ void Slime::setName() {
 }
 
 void Slime::setAttack(int level, int random) {
-	this->attack = level * random;
+	this-> attack = level * random;
 }
 
 void Slime::setHealth(int level, int random) {
-	this->health = level * random;
+	this-> health = level * random;
+}
+
+int Slime::dropGold() {
+	int randomGold = rand() % 2;
+	return randomGold;
 }
