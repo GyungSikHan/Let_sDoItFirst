@@ -17,7 +17,7 @@
     <ClInclude Include="AttackBoost.h" />
     <ClInclude Include="BossMonster.h" />
     <ClInclude Include="Character.h" />
-    <ClInclude Include="Golbin.h" />
+    <ClInclude Include="Goblin.h" />
     <ClInclude Include="HealthPotion.h" />
     <ClInclude Include="Item.h" />
     <ClInclude Include="Monster.h" />

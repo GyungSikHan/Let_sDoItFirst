@@ -1,18 +1,18 @@
 ﻿#pragma once
 #include "Monster.h"
-#include<iostream>
-#include<string>
+#include <iostream>
+#include <string>
 
 using namespace std;
-class Troll : public Monster {
+class Goblin : public Monster {
 private:
-    string name = "NULL";
+    string name;
     int health = 0;
     int attack = 0;
 public:
-    Troll(int level/*캐릭터 레벨*/) {
-        int RandomHelathBoost = rand() % 10 + 25;
-        int RandomDamageBoost = rand() % 5 + 7;
+    Goblin(int level/*캐릭터 레벨*/) {
+        int RandomHelathBoost = rand() % 10 + 15;
+        int RandomDamageBoost = rand() % 5 + 5;
         setName();
         setAttack(level, RandomDamageBoost);
         setHealth(level, RandomHelathBoost);
@@ -26,5 +26,5 @@ public:
     void takeDamage(int damage);
     Item* dropItem();
     int dropGold();
-    int dropEXP() { return 30; };
+    int dropEXP() { return 15; };
 };

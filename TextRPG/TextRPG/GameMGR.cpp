@@ -2,7 +2,7 @@
 
 #include <ppltasks.h>
 
-#include "Golbin.h"
+#include "Goblin.h"
 #include "Orc.h"
 #include "Shop.h"
 #include "Troll.h"
@@ -149,9 +149,9 @@ void GameMGR::DisplayInventory(Character* player)
 {
     //character에 함수로 구현해도 될듯..?
     //vector<Item*> 반환하는 Get함수 필요
-    for (Item* item : player->GetItems())
+    for (Item* item : player->GetItems()
     {
-        cout<<item->getName()<<"이 "<<item->getItemIdx()<<"개 있습니다"<<endl;
+        cout << item->getName() << "이 " << item->getItemIdx() << "개 있습니다" << endl;
     }
 }
 
