@@ -1,7 +1,7 @@
 ﻿#pragma once
 #include "Monster.h"
-#include<iostream>
-#include<string>
+#include <iostream>
+#include <string>
 
 using namespace std;
 class Slime : public Monster {
@@ -13,10 +13,13 @@ public:
     Slime(int level/*캐릭터 레벨*/) {
         int RandomHelathBoost = rand() % 10 + 15;
         int RandomDamageBoost = rand() % 5 + 2;
-        this->health = level * RandomHelathBoost;
-        this->attack = level * RandomDamageBoost;
-        this->name = "슬라임";
+        setName();
+        setAttack(level, RandomDamageBoost);
+        setHealth(level, RandomHelathBoost);
     }
+    void setName();
+    void setAttack(int level, int random);
+    void setHealth(int level, int random);
     string getName() { return name; }
     int getHealth() { return health; }
     int getAttack() { return attack; }

@@ -15,3 +15,15 @@ Item* Orc::dropItem() {
 	else if (randomItem == 1)return new AttackBoost();
 	return nullptr;
 }
+
+void Orc::setName() {
+	this->name = "µå·¡°ï";
+}
+
+void Orc::setAttack(int level, int random) {
+	this->attack = level * random;
+}
+
+void Orc::setHealth(int level, int random) {
+	this->health = level * random;
+}

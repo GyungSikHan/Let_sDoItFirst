@@ -14,10 +14,13 @@ public:
     Orc(int level/*캐릭터 레벨*/) {
         int RandomHelathBoost = rand() % 10 + 20;
         int RandomDamageBoost = rand() % 5 + 5;
-        this->health = level * RandomHelathBoost;
-        this->attack = level * RandomDamageBoost;
-        this->name = "오크";
+        setName();
+        setAttack(level, RandomDamageBoost);
+        setHealth(level, RandomHelathBoost);
     }
+    void setName();
+    void setAttack(int level, int random);
+    void setHealth(int level, int random);
     string getName() { return name; }
     int getHealth() { return health; }
     int getAttack() { return attack; }
