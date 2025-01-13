@@ -9,16 +9,26 @@ using namespace std;
 class Character
 {
 public:
+	// Singleton Instance
 	static Character* getInstance();
 
+	// Display
 	void displayStatus();
 	void displayInventory();
+
+	// Experience, Level Up
 	void checkLevelUp();
 	void levelUp();
+
+	// Item, Inventory
 	void pushItem(Item* _item);
 	void popItem(int _index);
 	void useItem(int _index);
-	void visitShop();
+	//void visitShop();
+
+	// Battle
+	bool isDeath();
+	void takeDamage(int _damage);
 
 	inline string getName() { return name; }
 	inline const int getLevel() { return level; }
@@ -52,16 +62,6 @@ public:
 	inline void setGold(int _gold)
 	{
 		gold = _gold;
-	}
-
-	inline bool isDeath()
-	{
-		if (health <= 0)
-		{
-			return true;
-		}
-
-		return false;
 	}
 
 private:

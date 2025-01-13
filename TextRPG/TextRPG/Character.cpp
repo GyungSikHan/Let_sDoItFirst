@@ -54,7 +54,7 @@ void Character::checkLevelUp()
 {
 	if (this->level >= 10)
 	{
-		experience = maxExperience;
+		this->experience = this->maxExperience;
 
 		cout << "최고 레벨에 도달하여 레벨업할 수 없습니다." << endl;
 	}
@@ -93,7 +93,22 @@ void Character::useItem(int _index)
 	popItem(_index);
 }
 
-void Character::visitShop()
+//void Character::visitShop()
+//{
+//	
+//}
+
+bool Character::isDeath()
 {
-	/*TODO*/
+	if (this->health <= 0)
+	{
+		return true;
+	}
+
+	return false;
+}
+
+void Character::takeDamage(int _damage)
+{
+	this->health -= _damage;
 }
