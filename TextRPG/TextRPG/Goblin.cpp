@@ -37,3 +37,10 @@ int Goblin::dropGold() {
 	int randomGold = rand() % 20 + 30;
 	return randomGold;
 }
+
+bool Goblin::isDead() {
+	if (getHealth() > 0) return true;
+	else return false;
+
+	return false;
+}

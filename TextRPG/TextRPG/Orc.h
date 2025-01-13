@@ -1,17 +1,16 @@
 ﻿#pragma once
-#include<iostream>
-#include<string>
-
 #include "Monster.h"
+#include <iostream>
+#include <string>
 
 using namespace std;
 class Orc : public Monster {
 private:
-    string name;
+    string name = "NULL";
     int health = 0;
     int attack = 0;
 public:
-    Orc(int level/*캐릭터 레벨*/) {
+    Orc(int level) {
         int RandomHelathBoost = rand() % 10 + 20;
         int RandomDamageBoost = rand() % 5 + 5;
         setName();
@@ -28,5 +27,5 @@ public:
     Item* dropItem();
     int dropGold();
     int dropEXP() { return 20; };
+    bool isDead();
 };
-

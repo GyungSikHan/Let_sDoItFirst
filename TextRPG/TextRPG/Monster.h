@@ -14,4 +14,5 @@ public:
     virtual Item* dropItem() = 0;
     virtual int dropGold() = 0;
     virtual int dropEXP() = 0;
+    virtual bool isDead() = 0;
 };

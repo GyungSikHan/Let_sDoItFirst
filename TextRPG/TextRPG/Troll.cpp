@@ -37,3 +37,10 @@ int Troll::dropGold() {
 	int randomGold = rand() % 20 + 30;
 	return randomGold;
 }
+
+bool Troll::isDead() {
+	if (getHealth() > 0) return true;
+	else return false;
+
+	return false;
+}

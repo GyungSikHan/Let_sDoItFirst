@@ -6,11 +6,11 @@
 using namespace std;
 class Goblin : public Monster {
 private:
-    string name;
+    string name = "NULL";
     int health = 0;
     int attack = 0;
 public:
-    Goblin(int level/*캐릭터 레벨*/) {
+    Goblin(int level) {
         int RandomHelathBoost = rand() % 10 + 15;
         int RandomDamageBoost = rand() % 5 + 5;
         setName();
@@ -27,4 +27,5 @@ public:
     Item* dropItem();
     int dropGold();
     int dropEXP() { return 15; };
+    bool isDead();
 };

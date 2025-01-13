@@ -6,11 +6,11 @@
 using namespace std;
 class Slime : public Monster {
 private:
-    string name;
+    string name = "NULL";
     int health = 0;
     int attack = 0;
 public:
-    Slime(int level/*캐릭터 레벨*/) {
+    Slime(int level) {
         int RandomHelathBoost = rand() % 10 + 15;
         int RandomDamageBoost = rand() % 5 + 2;
         setName();
@@ -27,4 +27,5 @@ public:
     Item* dropItem();
     int dropGold();
     int dropEXP() { return 10; };
+    bool isDead();
 };

@@ -3,11 +3,10 @@
 #include <iostream>
 #include <string>
 
-
 using namespace std;
 class BossMonster : public Monster {
 private:
-    string name;
+    string name = "NULL";
     int health = 0;
     int attack = 0;
 public:
@@ -25,4 +24,5 @@ public:
     void takeDamage(int damage);
     Item* dropItem();
     int dropGold();
+    bool isDead();
 };
