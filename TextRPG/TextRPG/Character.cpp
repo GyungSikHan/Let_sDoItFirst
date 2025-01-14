@@ -64,7 +64,7 @@ void Character::checkLevelUp()
 		cout << "최고 레벨에 도달하여 레벨업할 수 없습니다." << endl;
 	}
 
-	if (this->experience > this->maxExperience)
+	if (this->experience >= this->maxExperience)
 	{
 		levelUp();
 

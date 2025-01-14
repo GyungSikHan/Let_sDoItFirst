@@ -55,6 +55,8 @@ Monster* GameMGR::GenerateMonster(int level)
 		break;
 	case 3:
 		monster = new Slime(level);
+		return monster;
+		break;
 	default:
 		ran = (int)(rand() % 3);
 		break;
@@ -68,14 +70,14 @@ BossMonster* GameMGR::GenerateBossMonster(int level)
 		return nullptr;
 
 	Monster* monster = new BossMonster(level);
-	return nullptr;
+	return dynamic_cast<BossMonster*>( monster);
 }
 
 void GameMGR::Battle()
 {
 	Monster* monster{};
 	if (player->getLevel() >= 10)
-		monster = GenerateMonster(player->getLevel());
+		monster = GenerateBossMonster(player->getLevel());
 	else
 		monster = GenerateMonster(player->getLevel());
 
@@ -140,7 +142,7 @@ void GameMGR::Battle()
 				cout << "체력회복!!!" << player->getHealth() << "/" << player->getMaxHealth() << endl;
 			else if (index2 == 2 && bUse == true)
 				cout << "공격력 증가 : " << player->getAttack() << endl;
-			else if (index2 != 1 && index2 != 2 || bUse == false)
+			else if ((index2 != 1 && index2 != 2) || bUse == false)
 			{
 				cout << "잘못 입력했습니다!!" << endl;
 				continue;
