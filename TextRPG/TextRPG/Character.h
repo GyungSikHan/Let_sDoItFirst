@@ -86,27 +86,5 @@ private:
 	int gold = 10;
 
 	vector<Item*> inventory;
-
-	/*
-	inline void setHealth(int _health)
-	{
-		if (health > maxHealth)
-		{
-			health = maxHealth;
-		}
-		else
-		{
-			health = _health;
-		}
-	}
-	inline void setAttack(int _attack)
-	{
-		attack = _attack;
-	}
-	inline void setGold(int _gold)
-	{
-		gold = _gold;
-	}
-	*/
 };
 
