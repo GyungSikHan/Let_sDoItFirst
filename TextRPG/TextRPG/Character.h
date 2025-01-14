@@ -83,7 +83,7 @@ private:
 	int attack = 5;
 	float experience = 0.0f;
 	float maxExperience = 100.0f;
-	int gold = 10;
+	int gold = 1000;
 
 	vector<Item*> inventory;
 

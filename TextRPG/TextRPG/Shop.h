@@ -14,7 +14,6 @@ public:
 		avaliableItems.push_back(new HealthPotion);
 		avaliableItems.push_back(new AttackBoost);
 	}
-
 	void displayItems();
 	void buyItem(int index, Character* player);
 	void sellItem(int index, Character* player);

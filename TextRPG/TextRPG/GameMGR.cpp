@@ -107,12 +107,11 @@ void GameMGR::Battle()
                 bMonsterDead = true;
                 {
                     cout << monster->getName() << "이 죽었습니다!!" << endl;
-                    //TODO character에 연결
                     //Get Gold
                 	{
                         int tmpeGold = monster->dropGold();
                         cout << tmpeGold << "획득!!" << endl;
-	                    player->setGold(player->getGold() + tmpeGold);
+	                    player->addGold(tmpeGold);
                         cout << "소지골드 : " << player->getGold() << endl;
                     }
                     for (Item* item : monster->dropItem())
@@ -120,19 +119,35 @@ void GameMGR::Battle()
                         cout << item->getName() << "을 획득했습니다!!" << endl;
                         player->pushItem(item);
                     }
-                    //TODO Exp 셋팅 monster->dropEXP();
-                    player->checkLevelUp();
+                    //GEt Exp
+                    {
+                        int tempExp = monster->dropEXP();
+                        cout << tempExp << "를 획득했습니다!!!" << endl;
+			            player->addExperience(tempExp);
+	                    player->checkLevelUp();
+                    }
                 }
             }
 	    	break;
 	    case 2:
-            //TODO 
-	        DisplayInventory();
-            cout << "어떤 아이템을 사용하시겠습니까?? ";
-
-            cin >> index2;
-
-            player->useItem(index2);
+            //TODO  아이템 확인 후 사용
+            do
+            {
+		        DisplayInventory();
+	            cout << "어떤 아이템을 사용하시겠습니까?? ";
+	            cin >> index2;
+                if(player->getInventory()[index2-1]->getItemIdx() != 0)
+	            {
+		            cout << player->getInventory()[index2]->getName() << "을 사용합니다!!!" << endl;
+			        player->useItem(index2-1);
+                    break;
+	            }
+	            else
+	            {
+                    cout << "아이템이 없습니다!!  다시 선택해주세요!!!" << endl;
+	            }
+            }
+            while (true);
 
 	    	break;
 	    case 3:
@@ -165,22 +180,25 @@ void GameMGR::VisitShop()
         case 1:
             cout << "구매할 아이템 번호를 입력하세요: ";
             cin >> index2;
-            //TODO 소지금 적으면 아이템 못삼
-            //if(player->getGold() < shop.ite
-	        shop->buyItem(index2, player);
+            
+            if (player->getGold() < shop->getShopItems()[index2 - 1]->getPrice())
+                cout << "금액이 부족합니다!!!" << endl;
+            else
+		        shop->buyItem(index2-1, player);
             break;
+
         case 2:
             cout << "판매할 아이템 번호를 입력하세요: ";
             DisplayInventory();
             cin >> index2;
         	//TODO 아이템 get 하는 함수
-            //if (find(player->getInventory().begin(), player->getInventory().end(), shop.getIter()) == player->getInventory().end())
+            //if (find(player->getInventory().begin(), player->getInventory().end(), shop->getShopItems()[index2-1]->getItemIdx()) == player->getInventory().end())
             //    cout << "해당 아이템이 없습니다!!!" << endl;
             //else
-            //{//TODO 파는 내용
+            ////TODO 파는 내용
 	        //    shop->sellItem(index2, player);
-	        //    
-            //}
+	            
+            
             break;
         case 3:
             cout << "상점에서 나갑니다" << endl;
@@ -229,6 +247,9 @@ void GameMGR::InitCharacter()
         name.erase(10, name.size());
     player = Character::getInstance();
     player->setName(name);
+    player->displayInventory();
+    //인벤토리 아이템 공간 만듦
+    //shop->pushItem(player);
 }
 
 void GameMGR::PrintCharacterInfo()
@@ -257,11 +278,9 @@ void GameMGR::Play()
             case 4:
                 DisplayInventory();
                 break;
-        case 5://TODO 잡은 몬스터 갯수
-            break;
-        case 6:
-            cout << "게임을 종료합니다!!" << endl;
-            break;
+        	case 5:
+				cout << "게임을 종료합니다!!" << endl;
+				break;
         }
     }
 }
