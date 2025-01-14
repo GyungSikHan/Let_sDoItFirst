@@ -18,9 +18,6 @@ Orc::Orc(int level) {
 	setHealth(tempAttack);
 }
 
-Orc::~Orc() {
-
-}
 
 void Orc::takeDamage(int damage) {
 	int tHealth = getHealth() - damage;

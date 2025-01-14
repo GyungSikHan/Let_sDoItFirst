@@ -132,11 +132,11 @@ void GameMGR::VisitShop()
         {
         case 1:
             //TODO 골드에 따라 구매 가능한지 판단
-	        shop->buyItem(index);
+	        shop->buyItem(index, player);
             break;
         case 2:
             //TODO 아이템 있는지 판단 후 판매
-            shop->sellItem(index);
+            shop->sellItem(index, player);
             break;
         case 3:
             cout << "상점에서 나갑니다" << endl;
@@ -187,8 +187,8 @@ void GameMGR::InitCharacter()
     cin>>name;
     if (name.size() > 10)
         name.erase(10, name.size());
-    player = Character::getInstance(name);
-    //TODO player->setName(name);
+    player = Character::getInstance();
+    player->setName(name);
 }
 
 void GameMGR::PrintCharacterInfo()

@@ -18,9 +18,6 @@ Goblin::Goblin(int level) {
 	setHealth(tempAttack);
 }
 
-Goblin::~Goblin() {
-
-}
 
 void Goblin::takeDamage(int damage) {
 	int tHealth = getHealth() - damage;
