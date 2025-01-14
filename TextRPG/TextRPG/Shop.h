@@ -18,6 +18,7 @@ public:
 	void displayItems();
 	void buyItem(int index, Character* player);
 	void sellItem(int index, Character* player);
+	vector<Item*> getShopItems(){return avaliableItems;};
 
 private:
 	vector<Item*> avaliableItems;

@@ -10,7 +10,7 @@ class AttackBoost : public Item
 public:
 	string getName(){return name;};
 	void use(Character* character){
-		character->setAttack(character->getAttack() + getAttackIncrease());
+		character->addAttack(getAttackIncrease());
 	};
 	int getPrice(){return price;};
 	int getItemIdx(){return itemIdx;};

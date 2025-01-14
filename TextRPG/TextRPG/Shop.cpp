@@ -18,7 +18,7 @@ void Shop::displayItems()
 
 void Shop::buyItem(int index, Character* player)
 {
-	player->setGold(player->getGold() - avaliableItems[index]->getPrice());
+	player->addGold(-(avaliableItems[index]->getPrice()));
 	player->pushItem(avaliableItems[index]);
 	cout << avaliableItems[index]->getName() << "을 구매했습니다!"<< endl;
 }
@@ -30,7 +30,7 @@ void Shop::sellItem(int index, Character* player)
 		if (item->getItemIdx() == index) {
 			int minusPrice = item->getPrice() * sellPriceRatio;
 			int sellPrice = item->getPrice() - minusPrice;
-			player->setGold(player->getGold() + sellPrice);
+			player->addGold(sellPrice);
 			cout << item->getName() << "을 판매했습니다! / 현재 골드 : " << player->getGold() << endl;
 			player->popItemByType(index); 
 			break;

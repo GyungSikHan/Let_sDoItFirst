@@ -40,13 +40,18 @@ void Character::displayStatus()
 
 void Character::displayInventory()
 {
-	cout << "------------ Inventory --------------" << endl;
+	vector<int> itemCnt(2, 0);
 
 	for (int i = 0; i < inventory.size(); i++)
 	{
-		cout << "[" << i + 1 << "] " << inventory[i]->getName() << endl;
+		int itemType = inventory[i]->getItemIdx() - 1;
+		
+		itemCnt[itemType] += 1;
 	}
-	
+
+	cout << "------------ Inventory --------------" << endl;
+	cout << "[1] HealthPotion (체력 +70) - " << itemCnt[0] << "개" << endl;
+	cout << "[2] AttackBoost (공격력 +7) - " << itemCnt[1] << "개" << endl;
 	cout << "-------------------------------------" << endl;
 }
 
