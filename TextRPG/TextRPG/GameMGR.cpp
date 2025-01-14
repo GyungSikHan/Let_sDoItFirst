@@ -281,7 +281,7 @@ void GameMGR::Play()
 		case 4:
 			DisplayInventory();
 			break;
-		case 6:
+		case 5:
 			cout << "게임을 종료합니다!!" << endl;
 			break;
 		}
