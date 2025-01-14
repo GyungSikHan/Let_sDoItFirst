@@ -24,7 +24,7 @@ public:
     void VisitShop();
     void DisplayInventory();
 
-    void StartGame();
+    void StartGame(bool bDebug = false);
 private:
     void InitCharacter();
     void PrintCharacterInfo();
@@ -35,10 +35,14 @@ private:
     bool IsMonsterDead(Monster* monster);
     bool IsPlayerDead();
 
+    void PlayerDead();
+    void RestartGame();
 private:
     Character* player;
 	static GameMGR* instance;
     class Shop* shop;
 
     bool bPlayerDead{};
+
+    bool bDebugMode{};
 };

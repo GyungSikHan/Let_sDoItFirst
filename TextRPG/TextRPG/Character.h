@@ -11,7 +11,7 @@ class Character
 public:
 	// Singleton Instance
 	static Character* getInstance();
-
+	void DeleteInstance();
 	// Display
 	void displayStatus();
 	void displayInventory();
@@ -77,7 +77,7 @@ private:
 	static Character* instance;
 
 	string name = "";
-	int level = 1;
+	int level = 9;
 	int health = 100;
 	int maxHealth = 100;
 	int attack = 5;

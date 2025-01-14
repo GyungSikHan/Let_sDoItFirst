@@ -161,6 +161,11 @@ void GameMGR::Battle()
 				bPlayerDead = true;
 		}
 	}
+
+	PlayerDead();
+
+	delete monster;
+	monster = nullptr;
 }
 
 void GameMGR::VisitShop()
@@ -221,8 +226,9 @@ void GameMGR::DisplayInventory()
 	player->displayInventory();
 }
 
-void GameMGR::StartGame()
+void GameMGR::StartGame(bool bDebug)
 {
+	bDebugMode = bDebug;
 	bool bEnd{};
 	int temp{};
 	cout << "Text 세계에 오신걸 환영합니다." << endl;
@@ -244,6 +250,8 @@ void GameMGR::StartGame()
 		bEnd = true;
 		break;
 	}
+	if(bPlayerDead == true && bEnd == false)
+		RestartGame();
 }
 
 void GameMGR::InitCharacter()
@@ -287,6 +295,9 @@ void GameMGR::Play()
 			cout << "게임을 종료합니다!!" << endl;
 			break;
 		}
+
+		if(bPlayerDead == true)
+			break;
 	}
 }
 
@@ -318,4 +329,29 @@ bool GameMGR::IsMonsterDead(Monster* monster)
 bool GameMGR::IsPlayerDead()
 {
 	return player->isDeath();
+}
+
+void GameMGR::PlayerDead()
+{
+	cout << player->getName() << "이 죽었습니다!!!" << endl;
+}
+
+void GameMGR::RestartGame()
+{
+	if(bPlayerDead == false)
+		return;
+
+	if(bDebugMode == false)
+	{
+		player->DeleteInstance();
+		player = nullptr;
+		StartGame();
+	}
+	else
+	{
+		cout << "디버깅 모드에선 죽지 않습니다" << endl;
+		bPlayerDead = false;
+		player->addHealth(player->getMaxHealth());
+		Play();
+	}
 }

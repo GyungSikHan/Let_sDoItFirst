@@ -18,6 +18,15 @@ Character* Character::getInstance()
 	return instance;
 }
 
+void Character::DeleteInstance()
+{
+	if(instance == nullptr)
+		return;
+
+	delete instance;
+	instance = nullptr;
+}
+
 Character::Character()
 {
 }
