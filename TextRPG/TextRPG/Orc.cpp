@@ -18,9 +18,6 @@ Orc::Orc(int level) {
 	setHealth(tempAttack);
 }
 
-Orc::~Orc() {
-
-}
 
 void Orc::takeDamage(int damage) {
 	int tHealth = getHealth() - damage;
@@ -61,8 +58,7 @@ int Orc::dropGold() {
 }
 
 bool Orc::isDead() {
-	if (getHealth() > 0) return true;
-	else return false;
+	if (getHealth() > 0) return false;
 
-	return false;
+	return true;
 }

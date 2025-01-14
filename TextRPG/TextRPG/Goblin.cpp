@@ -18,9 +18,6 @@ Goblin::Goblin(int level) {
 	setHealth(tempAttack);
 }
 
-Goblin::~Goblin() {
-
-}
 
 void Goblin::takeDamage(int damage) {
 	int tHealth = getHealth() - damage;
@@ -61,8 +58,7 @@ int Goblin::dropGold() {
 }
 
 bool Goblin::isDead() {
-	if (getHealth() > 0) return true;
-	else return false;
-
-	return false;
+	if (getHealth() > 0) return false;
+	
+	return true;
 }

@@ -16,9 +16,6 @@ BossMonster::BossMonster(int level) {
 	setHealth(tempAttack);
 }
 
-BossMonster::~BossMonster() {
-
-}
 
 void BossMonster::takeDamage(int damage) {
 	int tHealth = getHealth() - damage;
@@ -59,8 +56,7 @@ int BossMonster::dropGold() {
 }
 
 bool BossMonster::isDead() {
-	if (getHealth() > 0) return true;
-	else return false;
-
-	return false;
+	if (getHealth() > 0) return false;
+	
+	return true;
 }

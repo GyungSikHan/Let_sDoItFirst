@@ -18,9 +18,6 @@ Troll::Troll(int level) {
 	setHealth(tempAttack);
 }
 
-Troll::~Troll() {
-
-}
 
 void Troll::takeDamage(int damage) {
 	int tHealth = getHealth() - damage;
@@ -61,8 +58,7 @@ int Troll::dropGold() {
 }
 
 bool Troll::isDead() {
-	if (getHealth() > 0) return true;
-	else return false;
-
-	return false;
+	if (getHealth() > 0) return false;
+	
+	return true;
 }

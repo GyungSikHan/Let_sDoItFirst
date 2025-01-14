@@ -18,10 +18,6 @@ Slime::Slime(int level) {
 	setHealth(tempAttack);
 }
 
-Slime::~Slime() {
-
-}
-
 void Slime::takeDamage(int damage) {
 	int tHealth = getHealth() - damage;
 	if (tHealth < 0) tHealth = 0;
@@ -61,8 +57,7 @@ int Slime::dropGold() {
 }
 
 bool Slime::isDead() {
-	if (getHealth() > 0) return true;
-	else return false;
+	if (getHealth() > 0) return false;
 
-	return false;
+	return true;
 }
