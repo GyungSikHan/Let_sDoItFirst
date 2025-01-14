@@ -1,10 +1,10 @@
 ﻿#include "GameMGR.h"
+#include <Windows.h>
 #include "Goblin.h"
 #include "Orc.h"
 #include "Shop.h"
 #include "Slime.h"
 #include "Troll.h"
-
 GameMGR* GameMGR::instance = nullptr;
 
 GameMGR::GameMGR()
@@ -100,10 +100,10 @@ void GameMGR::Battle()
 		cout << "체력: " << monster->getHealth() << " 공격력 : " << monster->getAttack() << endl;
 		cout << "1. 공격 2. 인벤토리 3. 도망가기 ";
 		cin >> index;
-
 		switch (index)
 		{
 		case 1:
+			Sleep(1000);
 			Attack(monster, 0);
 			if (IsMonsterDead(monster) == true)
 			{
@@ -144,7 +144,8 @@ void GameMGR::Battle()
 				cout << "공격력 증가 : " << player->getAttack() << endl;
 			else if ((index2 != 1 && index2 != 2) || bUse == false)
 			{
-				cout << "잘못 입력했습니다!!" << endl;
+				Sleep(1000);
+				system("cls");
 				continue;
 			}
 
@@ -156,10 +157,13 @@ void GameMGR::Battle()
 		}
 		if (bRun == false && bMonsterDead == false)
 		{
+			Sleep(1000);
 			Attack(monster, 1);
 			if (IsPlayerDead() == true)
 				bPlayerDead = true;
 		}
+		Sleep(1000);
+		system("cls");
 	}
 
 	PlayerDead();
@@ -217,6 +221,9 @@ void GameMGR::VisitShop()
 			cout << "상점에서 나갑니다" << endl;
 			break;
 		}
+
+		Sleep(500);
+		system("cls");
 	}
 
 }
@@ -244,6 +251,8 @@ void GameMGR::StartGame(bool bDebug)
 	switch (temp)
 	{
 	case 1:
+		Sleep(1000);
+		system("cls");
 		InitCharacter();
 		Play();
 		if(bPlayerDead == true)
@@ -272,6 +281,8 @@ void GameMGR::PrintCharacterInfo()
 
 void GameMGR::Play()
 {
+	Sleep(1000);
+	system("cls");
 	PrintDebug();
 	int data{};
 	while (data != 5)
@@ -279,7 +290,8 @@ void GameMGR::Play()
 		cout << "1. 전투 2. 상점 3. Player 정보 4. 인벤토리 5. 게임 끝내기" << endl;
 		cin >> data;
 		ExitGame(data);
-
+		Sleep(500);
+		system("cls");
 		switch (data)
 		{
 		case 1:
