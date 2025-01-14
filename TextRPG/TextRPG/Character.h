@@ -24,7 +24,7 @@ public:
 	void pushItem(Item* _item);
 	void popItemByType(int _itemIndex);
 	void popItemByIndex(int _inventoryIndex);
-	void useItem(int _itemIndex);
+	bool useItem(int _itemIndex);
 	//void visitShop();
 
 	// Battle
