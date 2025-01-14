@@ -58,8 +58,7 @@ int Orc::dropGold() {
 }
 
 bool Orc::isDead() {
-	if (getHealth() > 0) return true;
-	else return false;
+	if (getHealth() > 0) return false;
 
-	return false;
+	return true;
 }

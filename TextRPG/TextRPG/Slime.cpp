@@ -57,8 +57,7 @@ int Slime::dropGold() {
 }
 
 bool Slime::isDead() {
-	if (getHealth() > 0) return true;
-	else return false;
+	if (getHealth() > 0) return false;
 
-	return false;
+	return true;
 }
