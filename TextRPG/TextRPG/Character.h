@@ -45,24 +45,27 @@ public:
 	{
 		name = _name;
 	}
-	inline void setHealth(int _health)
+
+	inline void addHealth(int _health)
 	{
+		health += _health;
+
 		if (health > maxHealth)
 		{
 			health = maxHealth;
 		}
-		else
-		{
-			health = _health;
-		}
 	}
-	inline void setAttack(int _attack)
+	inline void addAttack(int _attack)
 	{
-		attack = _attack;
+		attack += _attack;
 	}
-	inline void setGold(int _gold)
+	inline void addExperience(float _experience)
 	{
-		gold = _gold;
+		experience += _experience;
+	}
+	inline void addGold(int _gold)
+	{
+		gold += _gold;
 	}
 
 private:
@@ -83,5 +86,27 @@ private:
 	int gold = 10;
 
 	vector<Item*> inventory;
+
+	/*
+	inline void setHealth(int _health)
+	{
+		if (health > maxHealth)
+		{
+			health = maxHealth;
+		}
+		else
+		{
+			health = _health;
+		}
+	}
+	inline void setAttack(int _attack)
+	{
+		attack = _attack;
+	}
+	inline void setGold(int _gold)
+	{
+		gold = _gold;
+	}
+	*/
 };
 
