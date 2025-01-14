@@ -10,7 +10,7 @@ public:
 	HealthPotion(){};
 	string getName(){return name;};
 	void use(Character* character){
-		character->setHealth(character->getHealth() + getHealthRestore());
+		character->addHealth(getHealthRestore());
 	};
 	int getPrice() { return price; };
 	int getItemIdx() { return itemIdx; };
