@@ -222,7 +222,7 @@ void GameMGR::VisitShop()
 			break;
 		}
 
-		Sleep(500);
+		Sleep(1000);
 		system("cls");
 	}
 
