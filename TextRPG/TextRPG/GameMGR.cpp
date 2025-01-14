@@ -263,7 +263,7 @@ void GameMGR::PrintCharacterInfo()
 void GameMGR::Play()
 {
 	int data{};
-	while (data != 6)
+	while (data != 5)
 	{
 		cout << "1. 전투 2. 상점 3. Player 정보 4. 인벤토리 5. 게임 끝내기" << endl;
 		cin >> data;
