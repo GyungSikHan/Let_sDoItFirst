@@ -22,8 +22,9 @@ public:
 
 	// Item, Inventory
 	void pushItem(Item* _item);
-	void popItem(int _index);
-	void useItem(int _index);
+	void popItemByType(int _itemIndex);
+	void popItemByIndex(int _inventoryIndex);
+	void useItem(int _itemIndex);
 	//void visitShop();
 
 	// Battle
