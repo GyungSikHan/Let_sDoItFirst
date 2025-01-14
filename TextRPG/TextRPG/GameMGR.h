@@ -14,10 +14,10 @@ private:
 
     ~GameMGR();
 public:
-     void Init();
+    void Init();
     static void Create();
     static GameMGR* GetInstance();
-    
+
     Monster* GenerateMonster(int level);
     BossMonster* GenerateBossMonster(int level);
     void Battle();
@@ -37,6 +37,20 @@ private:
 
     void PlayerDead();
     void RestartGame();
+
+    void PrintDebug()
+    {
+	    if (bDebugMode == true)
+	    {
+	    	cout << "-----Debuging Mode-----" << endl;
+	    	cout << "종료하시려면 9를 누르세요" << endl;
+	    }
+    }
+    void ExitGame(int index)
+    {
+        if(bDebugMode == true && index == 9)
+	    exit(1);
+    }
 private:
     Character* player;
 	static GameMGR* instance;
@@ -45,4 +59,5 @@ private:
     bool bPlayerDead{};
 
     bool bDebugMode{};
+    bool bEndDebug{};
 };

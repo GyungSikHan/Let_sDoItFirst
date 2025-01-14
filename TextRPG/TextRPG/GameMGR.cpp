@@ -163,7 +163,7 @@ void GameMGR::Battle()
 	}
 
 	PlayerDead();
-
+	int a{};
 	delete monster;
 	monster = nullptr;
 }
@@ -229,13 +229,14 @@ void GameMGR::DisplayInventory()
 void GameMGR::StartGame(bool bDebug)
 {
 	bDebugMode = bDebug;
-	bool bEnd{};
+	PrintDebug();
 	int temp{};
 	cout << "Text 세계에 오신걸 환영합니다." << endl;
 	cout << "1. 게임 시작     2. 게임종료" << endl;
 	while (temp != 1 && temp != 2)
 	{
 		cin >> temp;
+		ExitGame(temp);
 		if (temp != 1 && temp != 2)
 			cout << "잘못 입력했습니다. 다시 입력해주세요" << endl;
 	}
@@ -245,13 +246,12 @@ void GameMGR::StartGame(bool bDebug)
 	case 1:
 		InitCharacter();
 		Play();
+		if(bPlayerDead == true)
+			RestartGame();
 		break;
 	case 2:
-		bEnd = true;
 		break;
 	}
-	if(bPlayerDead == true && bEnd == false)
-		RestartGame();
 }
 
 void GameMGR::InitCharacter()
@@ -272,11 +272,14 @@ void GameMGR::PrintCharacterInfo()
 
 void GameMGR::Play()
 {
+	PrintDebug();
 	int data{};
 	while (data != 5)
 	{
 		cout << "1. 전투 2. 상점 3. Player 정보 4. 인벤토리 5. 게임 끝내기" << endl;
 		cin >> data;
+		ExitGame(data);
+
 		switch (data)
 		{
 		case 1:
@@ -333,6 +336,8 @@ bool GameMGR::IsPlayerDead()
 
 void GameMGR::PlayerDead()
 {
+	if(bPlayerDead == false)
+		return;
 	cout << player->getName() << "이 죽었습니다!!!" << endl;
 }
 
@@ -349,9 +354,12 @@ void GameMGR::RestartGame()
 	}
 	else
 	{
-		cout << "디버깅 모드에선 죽지 않습니다" << endl;
-		bPlayerDead = false;
-		player->addHealth(player->getMaxHealth());
-		Play();
+		while (bEndDebug == false)
+		{
+			cout << "디버깅 모드에선 죽지 않습니다" << endl;
+			bPlayerDead = false;
+			player->addHealth(player->getMaxHealth());
+			Play();
+		}
 	}
 }
