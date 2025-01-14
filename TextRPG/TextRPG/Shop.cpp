@@ -6,32 +6,34 @@ using namespace std;
 
 void Shop::displayItems()
 {
-	cout << "상점에 오신 것을 환영합니다!" <<endl;
-	cout << "구매 및 판매 가능한 아이템 :" <<endl;
+	cout<<"============== 상점 =============="<<endl;
+	cout<<"----------------------------------"<<endl;
 	for (auto& item : avaliableItems)
 	{
 		int minusPrice = item->getPrice() * sellPriceRatio;
 		int sellPrice = item->getPrice() - minusPrice;
-		cout << item->getItemIdx() << ". " << item->getName() << " / 가격 : " << item->getPrice() << " 골드" <<" / 판매가 : " << sellPrice << endl;
+		cout << item->getName() << " | 구매가 : " << item->getPrice() << "Gold | 판매가 : " << sellPrice << endl;
 	}
+	cout<<"----------------------------------"<<endl;
 }
 
 void Shop::buyItem(int index, Character* player)
 {
 	player->addGold(-(avaliableItems[index]->getPrice()));
 	player->pushItem(avaliableItems[index]);
-	cout << avaliableItems[index]->getName() << "을 구매했습니다!"<< endl;
+	cout << avaliableItems[index]->getPrice() << " Gold를 사용하여" << avaliableItems[index]->getName() << "을 구매했다!" << endl;
 }
 
 void Shop::sellItem(int index, Character* player)
 {
 	for (auto& item : avaliableItems)
 	{
-		if (item->getItemIdx() == index) {
+		if (item->getItemIdx() == index) 
+		{
 			int minusPrice = item->getPrice() * sellPriceRatio;
 			int sellPrice = item->getPrice() - minusPrice;
 			player->addGold(sellPrice);
-			cout << item->getName() << "을 판매했습니다! / 현재 골드 : " << player->getGold() << endl;
+			cout << item->getName() << "을(를) 판매하여 " << sellPrice<<" Gold를 얻었다!" << endl;
 			player->popItemByType(index); 
 			break;
 		}

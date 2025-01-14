@@ -37,13 +37,13 @@ Character::~Character()
 
 void Character::displayStatus()
 {
-	cout << "------------ Player Info ------------" << endl;
-	cout << "Name:" << this->name << endl;
-	cout << "Level: " << this->level << endl;
+	cout << "---------- Player 정보 -----------" << endl;
+	cout << "이름:" << this->name << endl;
+	cout << "레벨: " << this->level << endl;
 	cout << "HP: " << this->health << "/" << this->maxHealth << endl;
-	cout << "Attack: " << this->attack << endl;
+	cout << "공격력: " << this->attack << endl;
 	cout << "EXP: " << this->experience << "/" << this->maxExperience << endl;
-	cout << "Gold: " << this->gold << endl;
+	cout << "소지금: " << this->gold << endl;
 	cout << "-------------------------------------" << endl;
 }
 
@@ -58,7 +58,7 @@ void Character::displayInventory()
 		itemCnt[itemType] += 1;
 	}
 
-	cout << "------------ Inventory --------------" << endl;
+	cout << "------------ 인벤토리 ------------" << endl;
 	cout << "[1] HealthPotion (체력 +70) - " << itemCnt[0] << "개" << endl;
 	cout << "[2] AttackBoost (공격력 +7) - " << itemCnt[1] << "개" << endl;
 	cout << "-------------------------------------" << endl;
@@ -138,7 +138,7 @@ bool Character::useItem(int _itemIndex)
 
 	if (invenIndex == -1)
 	{
-		cout << "해당 아이템이 인벤토리에 없습니다." << endl;
+		cout << "아이템이 부족하여 사용에 실패했습니다." << endl;
 
 		return false;
 	}
