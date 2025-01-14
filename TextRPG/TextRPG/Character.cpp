@@ -46,7 +46,7 @@ void Character::displayInventory()
 	{
 		cout << "[" << i + 1 << "] " << inventory[i]->getName() << endl;
 	}
-
+	
 	cout << "-------------------------------------" << endl;
 }
 
@@ -82,21 +82,55 @@ void Character::pushItem(Item* _item)
 	inventory.push_back(_item);
 }
 
-void Character::popItem(int _index)
+void Character::popItemByType(int _itemIndex)
 {
-	inventory.erase(inventory.begin() + _index);
+	int invenIndex = -1;
+
+	for (int i = 0; i < inventory.size(); i++)
+	{
+		if (inventory[i]->getItemIdx() == _itemIndex)
+		{
+			invenIndex = i;
+			break;
+		}
+	}
+
+	if (invenIndex == -1)
+	{
+		cout << "해당 아이템이 인벤토리에 없습니다." << endl;
+		return;
+	}
+
+	popItemByIndex(invenIndex);
 }
 
-void Character::useItem(int _index)
+void Character::popItemByIndex(int _invenIndex)
 {
-	inventory[_index]->use(this);
-	popItem(_index);
+	inventory.erase(inventory.begin() + _invenIndex);
 }
 
-//void Character::visitShop()
-//{
-//	
-//}
+void Character::useItem(int _itemIndex)
+{
+	int invenIndex = -1;
+
+	for (int i = 0; i < inventory.size(); i++)
+	{
+		if (inventory[i]->getItemIdx() == _itemIndex)
+		{
+			invenIndex = i;
+			break;
+		}
+	}
+
+	if (invenIndex == -1)
+	{
+		cout << "해당 아이템이 인벤토리에 없습니다." << endl;
+		return;
+	}
+
+	inventory[invenIndex]->use(this);
+	popItemByIndex(invenIndex);
+}
 
 bool Character::isDeath()
 {
