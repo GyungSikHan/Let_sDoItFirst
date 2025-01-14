@@ -21,6 +21,6 @@ public:
     void takeDamage(int damage);
     vector<Item*> dropItem();
     int dropGold();
-    int dropEXP() { return 15; };
+    int dropEXP(int level) { return 15 * level; };
     bool isDead();
 };

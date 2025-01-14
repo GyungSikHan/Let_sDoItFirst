@@ -124,7 +124,7 @@ void GameMGR::Battle()
 					}
 					//Exp 셋팅
 					{
-						int tempExp = monster->dropEXP();
+						int tempExp = monster->dropEXP(player->getLevel());
 						cout << tempExp << "의 EXP를 얻었습니다!!!" << endl;
 						player->addExperience(tempExp);
 						player->checkLevelUp();
