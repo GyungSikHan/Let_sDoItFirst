@@ -77,13 +77,13 @@ private:
 	static Character* instance;
 
 	string name = "";
-	int level = 9;
+	int level = 1;
 	int health = 100;
 	int maxHealth = 100;
 	int attack = 5;
 	float experience = 0.0f;
 	float maxExperience = 100.0f;
-	int gold = 10000;
+	int gold = 10;
 
 	vector<Item*> inventory;
 
