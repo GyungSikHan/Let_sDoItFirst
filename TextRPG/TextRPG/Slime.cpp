@@ -18,10 +18,6 @@ Slime::Slime(int level) {
 	setHealth(tempAttack);
 }
 
-Slime::~Slime() {
-
-}
-
 void Slime::takeDamage(int damage) {
 	int tHealth = getHealth() - damage;
 	if (tHealth < 0) tHealth = 0;

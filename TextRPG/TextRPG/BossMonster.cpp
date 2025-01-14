@@ -16,9 +16,6 @@ BossMonster::BossMonster(int level) {
 	setHealth(tempAttack);
 }
 
-BossMonster::~BossMonster() {
-
-}
 
 void BossMonster::takeDamage(int damage) {
 	int tHealth = getHealth() - damage;

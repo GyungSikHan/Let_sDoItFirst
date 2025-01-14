@@ -18,9 +18,6 @@ Troll::Troll(int level) {
 	setHealth(tempAttack);
 }
 
-Troll::~Troll() {
-
-}
 
 void Troll::takeDamage(int damage) {
 	int tHealth = getHealth() - damage;
