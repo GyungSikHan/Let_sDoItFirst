@@ -14,8 +14,8 @@ Orc::Orc(int level) {
 	int tempAttack = level * RandomDamageBoost;
 	string tempName = "ø¿≈©";
 	setName(tempName);
-	setAttack(tempHealth);
-	setHealth(tempAttack);
+	setAttack(tempAttack);
+	setHealth(tempHealth);
 }
 
 

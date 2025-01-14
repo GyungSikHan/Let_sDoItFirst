@@ -14,8 +14,8 @@ Goblin::Goblin(int level) {
 	int tempAttack = level * RandomDamageBoost;
 	string tempName = "°íºí¸°";
 	setName(tempName);
-	setAttack(tempHealth);
-	setHealth(tempAttack);
+	setAttack(tempAttack);
+	setHealth(tempHealth);
 }
 
 

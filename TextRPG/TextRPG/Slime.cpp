@@ -14,8 +14,8 @@ Slime::Slime(int level) {
 	int tempAttack = level * RandomDamageBoost;
 	string tempName = "ΩΩ∂Û¿”";
 	setName(tempName);
-	setAttack(tempHealth);
-	setHealth(tempAttack);
+	setAttack(tempAttack);
+	setHealth(tempHealth);
 }
 
 void Slime::takeDamage(int damage) {

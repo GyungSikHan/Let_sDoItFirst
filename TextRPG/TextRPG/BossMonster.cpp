@@ -12,8 +12,8 @@ BossMonster::BossMonster(int level) {
 	int tempAttack = 60;
 	string tempName = "µå·¡°ï";
 	setName(tempName);
-	setAttack(tempHealth);
-	setHealth(tempAttack);
+	setAttack(tempAttack);
+	setHealth(tempHealth);
 }
 
 

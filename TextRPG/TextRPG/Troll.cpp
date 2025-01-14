@@ -14,8 +14,8 @@ Troll::Troll(int level) {
 	int tempAttack = level * RandomDamageBoost;
 	string tempName = "Æ®·Ñ";
 	setName(tempName);
-	setAttack(tempHealth);
-	setHealth(tempAttack);
+	setAttack(tempAttack);
+	setHealth(tempHealth);
 }
 
 
