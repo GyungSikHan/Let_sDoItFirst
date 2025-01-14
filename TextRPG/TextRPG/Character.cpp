@@ -114,7 +114,7 @@ void Character::popItemByIndex(int _invenIndex)
 	inventory.erase(inventory.begin() + _invenIndex);
 }
 
-void Character::useItem(int _itemIndex)
+bool Character::useItem(int _itemIndex)
 {
 	int invenIndex = -1;
 
@@ -130,11 +130,14 @@ void Character::useItem(int _itemIndex)
 	if (invenIndex == -1)
 	{
 		cout << "해당 아이템이 인벤토리에 없습니다." << endl;
-		return;
+
+		return false;
 	}
 
 	inventory[invenIndex]->use(this);
 	popItemByIndex(invenIndex);
+
+	return true;
 }
 
 bool Character::isDeath()
