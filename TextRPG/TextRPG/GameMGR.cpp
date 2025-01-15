@@ -124,6 +124,7 @@ void GameMGR::Battle()
 		case 1:
 			Sleep(1000);
 			Attack(monster, 0);
+			
 			if (IsMonsterDead(monster) == true)
 			{
 				bMonsterDead = true;
@@ -199,7 +200,6 @@ void GameMGR::Battle()
 		system("cls");
 	}
 	PlayerDead();
-	int a{};
 	delete monster;
 	monster = nullptr;
 }
