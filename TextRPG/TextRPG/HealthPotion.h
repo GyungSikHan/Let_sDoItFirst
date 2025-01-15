@@ -19,7 +19,7 @@ public:
 private:
 	string name = "HealthPotion (Ã¼·Â +70)";
 	int healthRestore = 70;
-	int price = 130;
+	int price = 30;
 	int itemIdx = 1;
 };
 

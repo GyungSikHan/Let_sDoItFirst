@@ -67,12 +67,14 @@ public:
 	{
 		gold += _gold;
 	}
+	inline void OriginAttack() { attack = Originattack; }
 
 private:
 	Character();
 	~Character();
 	Character(const Character&) = delete;
 	Character& operator=(const Character&) = delete;
+
 
 	static Character* instance;
 
@@ -81,7 +83,8 @@ private:
 	int health = 100;
 	int maxHealth = 100;
 	int attack = 5;
-	float experience = 0.0f;
+	int Originattack = 5;
+	float experience = 00.0f;
 	float maxExperience = 100.0f;
 	int gold = 10;
 

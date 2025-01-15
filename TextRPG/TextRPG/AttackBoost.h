@@ -19,7 +19,7 @@ public:
 private:
 	string name = "AttackBoost (°ø°Ý·Â +7)";
 	int attackIncrease = 7;
-	int price = 170;
+	int price = 40;
 	int itemIdx = 2;
 };
 

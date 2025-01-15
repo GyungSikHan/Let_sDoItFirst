@@ -94,9 +94,11 @@ void GameMGR::Battle()
 	bool bRun{};
 	int index{};
 	int index2{};
+	bool bUseAttackBoost{};
+	int tempAttack{};
 	while (bMonsterDead == false && bPlayerDead == false && bRun == false)
 	{
-		bool bUse{};
+		bool bUseItem{};
 		cout << "============== 전투 ==============" << endl;
 		cout << "----------------------------------" << endl;
 		cout << "[Player ~ "<<player->getName()<<"] HP : "<<player->getHealth()<<"/"<<player->getMaxHealth() << " 공격력 : "<<player->getAttack() << endl;
@@ -150,19 +152,27 @@ void GameMGR::Battle()
 			break;
 		case 2:
 			DisplayInventory();
-			cout << "사용할 아이템 번호를 입력해주세요 : (입력)";
+			cout << "사용할 아이템 번호를 입력해주세요(3 이전으로 돌아가기) : (입력)";
 			while (true)
 			{
 				cin >> index2;
-				if(index2 == 1 || index2 == 2)
+				if(index2 >= 1 && index2 <= 3)
 					break;
 				cout << "잘못된 숫자입니다. 다시 입력해주세요. : (입력)" << endl;
 			}
-			bUse = player->useItem(index2);
-			if (index2 == 1 && bUse == true)
-				cout << "체력이 회복되었다! (HP : " << player->getHealth() << "/" << player->getMaxHealth()<<")" << endl;
-			else if (index2 == 2 && bUse == true)
-				cout << "공격력이 증가했다! (공격력 : " << player->getAttack()<<")" << endl;
+			if (index2 == 3)
+			{
+				system("cls");
+				continue;
+			}
+			bUseItem = player->useItem(index2);
+			if (index2 == 1)
+				cout << "체력이 회복되었다! (HP : " << player->getHealth() << "/" << player->getMaxHealth() << ")" << endl;
+			else if (index2 == 2)
+			{
+				bUseAttackBoost = true;
+				cout << "공격력이 증가했다! (공격력 : " << player->getAttack() << ")" << endl;
+			}
 			break;
 		case 3:
 			bRun = true;
@@ -170,17 +180,24 @@ void GameMGR::Battle()
 			cout << player->getName() << "은(는) " <<monster->getName()<<"(몬스터이름)(으)로부터 무사히 도망쳤다..." << endl;
 			break;
 		}
-		if (bRun == false && bMonsterDead == false)
+		if (bRun == false && bMonsterDead == false && bUseItem==true)
 		{
 			Sleep(1000);
 			Attack(monster, 1);
 			if (IsPlayerDead() == true)
 				bPlayerDead = true;
 		}
+		Sleep(1500);
+		system("cls");
+	}
+	if(bUseAttackBoost == true)
+	{
+		player->OriginAttack();
+		cout << "지속 아이템 효과가 끝났습니다..." << endl;
+		cout << "공격력이 감소했다! (공격력 : " << player->getAttack() << ")" << endl;
 		Sleep(1000);
 		system("cls");
 	}
-
 	PlayerDead();
 	int a{};
 	delete monster;
@@ -216,17 +233,22 @@ void GameMGR::VisitShop()
 		switch (index)
 		{
 		case 1:
-			cout << "구매할 아이템 번호를 입력해주세요 : (입력)";
+			cout << "구매할 아이템 번호를 입력해주세요(3. 뒤로가기) : (입력)";
 			while (true)
 			{
 				cin >> index2;
-				if(index2 == 1 || index2 == 2)
+				if (index2 >= 1 && index2 <= 3)
 					break;
 				cout << "잘못된 숫자입니다. 다시 입력해주세요." << endl;
-					cout << "(입력)";
+				cout << "(입력)";
 			}
 			cout << "//" << endl;
-			if (player->getGold() < shop->getShopItems()[index2 - 1]->getPrice())
+			if (index2 == 3)
+			{
+				system("cls");
+				continue;
+			}
+			else if (player->getGold() < shop->getShopItems()[index2 - 1]->getPrice())
 				cout << "Gold가 부족합니다!!!" << endl;
 			else
 				shop->buyItem(index2 - 1, player);
@@ -241,16 +263,20 @@ void GameMGR::VisitShop()
 
 			DisplayInventory();
 			cout << "아이템 판매가는 구매가의 절반입니다." << endl;
-			cout << "확인하셨다면 판매할 아이템 번호를 입력해주세요 : (입력)";
+			cout << "확인하셨다면 판매할 아이템 번호를 입력해주세요(3. 뒤로가기) : (입력)";
 			while (true)
 			{
 				cin >> index2;
-				if (index2 == 1 || index2 == 2)
+				if (index2 >= 1 || index2 <= 3)
 					break;
 				cout << "잘못된 숫자입니다. 다시 입력해주세요." << endl;
 				cout << "(입력)";
 			}
-
+			if(index2 == 3)
+			{
+				system("cls");
+				continue;
+			}
 			for (int i = 0; i < player->getInventory().size(); i++)
 			{
 				if (player->getInventory()[i]->getItemIdx() == index2)
