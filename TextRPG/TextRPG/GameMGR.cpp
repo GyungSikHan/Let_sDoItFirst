@@ -195,8 +195,11 @@ void GameMGR::Battle()
 						player->pushItem(item);
 					}
 				}
-			}
+				Sleep(1000);
+				system("cls");
+				break;
 
+			}
 			Attack(monster, 1);
 			if (IsPlayerDead() == true)
 				bPlayerDead = true;
@@ -220,8 +223,6 @@ void GameMGR::Battle()
 
 void GameMGR::VisitShop()
 {
-
-
 	int index{};
 	int index2{};
 	while (index != 3)
@@ -389,10 +390,10 @@ void GameMGR::Play(int* temp)
 {
 	Sleep(1000);
 	system("cls");
-	PrintDebug();
 	int data{};
 	while (data != 5)
 	{
+		PrintDebug();
 		cout << "============== 마을 ==============" << endl;
 		cout << "무엇을 하시겠습니까 ?" << endl;
 		cout << "1. 전투" << endl;

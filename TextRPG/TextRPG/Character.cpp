@@ -85,8 +85,8 @@ void Character::levelUp()
 {
 	this->level += 1;
 	this->experience -= maxExperience;
-	this->maxHealth = 100 + 20 * (this->level - 1);
-	this->attack = 5 + 5 * (this->level - 1);
+	this->maxHealth = 100 + 30 * (this->level - 1);
+	this->attack = 5 + 7 * (this->level - 1);
 	this->Originattack = this->attack;
 	this->maxExperience = 100.0f + 50.0f * float(this->level - 1);
 	this->health = this->maxHealth;
