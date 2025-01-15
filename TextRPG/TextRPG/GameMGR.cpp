@@ -149,9 +149,9 @@ void GameMGR::Battle()
 				continue;
 			}
 			bUseItem = player->useItem(index2);
-			if (index2 == 1)
+			if (index2 == 1 && bUseItem)
 				cout << "체력이 회복되었다! (HP : " << player->getHealth() << "/" << player->getMaxHealth() << ")" << endl;
-			else if (index2 == 2)
+			else if (index2 == 2 && bUseItem)
 			{
 				bUseAttackBoost = true;
 				cout << "공격력이 증가했다! (공격력 : " << player->getAttack() << ")" << endl;
