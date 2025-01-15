@@ -4,6 +4,6 @@
 int main()
 {
   GameMGR::Create();
-  GameMGR::GetInstance()->StartGame(true);
-	
+  GameMGR::GetInstance()->StartGame();
+
 }

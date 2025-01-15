@@ -75,7 +75,6 @@ private:
 	Character(const Character&) = delete;
 	Character& operator=(const Character&) = delete;
 
-
 	static Character* instance;
 
 	string name = "";

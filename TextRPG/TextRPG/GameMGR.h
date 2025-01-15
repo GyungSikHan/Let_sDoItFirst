@@ -28,7 +28,7 @@ public:
 private:
     void InitCharacter();
     void PrintCharacterInfo();
-    void Play();
+	void Play(int* temp = nullptr);
 
     void Attack(Monster* monster, int index);
 
@@ -36,28 +36,21 @@ private:
     bool IsPlayerDead();
 
     void PlayerDead();
+    void BossDead(Monster* monster);
     void RestartGame();
+    void PlayerDelete();
+    void PrintDebug();
+    void ExitGame(int index);
+    void EndGame();
 
-    void PrintDebug()
-    {
-	    if (bDebugMode == true)
-	    {
-	    	cout << "-----Debuging Mode-----" << endl;
-	    	cout << "종료하시려면 9를 누르세요" << endl;
-	    }
-    }
-    void ExitGame(int index)
-    {
-        if(bDebugMode == true && index == 9)
-	    exit(1);
-    }
+    void GoFromDebugModeToBoss();
 private:
     Character* player;
 	static GameMGR* instance;
     class Shop* shop;
 
     bool bPlayerDead{};
-
+    bool bBoss{};
     bool bDebugMode{};
     bool bEndDebug{};
 };

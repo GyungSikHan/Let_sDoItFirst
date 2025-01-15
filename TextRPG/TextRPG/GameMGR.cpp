@@ -1,4 +1,9 @@
 ﻿#include "GameMGR.h"
+
+#define NOMINMAX
+
+#include <limits>
+#include <string>
 #include <Windows.h>
 #include "Goblin.h"
 #include "Orc.h"
@@ -61,6 +66,8 @@ Monster* GameMGR::GenerateMonster(int level)
 		ran = (int)(rand() % 3);
 		break;
 	}
+
+	bBoss == false;
 	return monster;
 }
 
@@ -68,7 +75,7 @@ BossMonster* GameMGR::GenerateBossMonster(int level)
 {
 	if (instance == nullptr)
 		return nullptr;
-
+	bBoss = true;
 	Monster* monster = new BossMonster(level);
 	return dynamic_cast<BossMonster*>(monster);
 }
@@ -125,31 +132,6 @@ void GameMGR::Battle()
 			Sleep(1000);
 			Attack(monster, 0);
 			
-			if (IsMonsterDead(monster) == true)
-			{
-				bMonsterDead = true;
-				{
-					cout << monster->getName() << "을(를) 쓰러트렸다!!!" << endl;
-					//Exp 셋팅
-					{
-						int tempExp = monster->dropEXP(player->getLevel());
-						cout <<"EXP를 " << tempExp << "의 EXP를 얻었습니다!!!" << endl;
-						player->addExperience(tempExp);
-						player->checkLevelUp();
-					}
-					//Get Gold
-					{
-						int tmpeGold = monster->dropGold();
-						cout << tmpeGold << " Gold를 획득했다!" << endl;
-						player->addGold(tmpeGold);
-					}
-					for (Item* item : monster->dropItem())
-					{
-						cout << item->getName() << "을(를) 획득했! 운이 좋았어!" << endl;
-						player->pushItem(item);
-					}
-				}
-			}
 			break;
 		case 2:
 			DisplayInventory();
@@ -177,13 +159,44 @@ void GameMGR::Battle()
 			break;
 		case 3:
 			bRun = true;
+			bBoss = false;
 			cout<<"비록 지금은 도망치지만... 다음에 다시 만날 때를 각오해라 !!!"<<endl;
 			cout << player->getName() << "은(는) " <<monster->getName()<<"(몬스터이름)(으)로부터 무사히 도망쳤다..." << endl;
 			break;
 		}
-		if (bRun == false && bMonsterDead == false)
+		if (bRun == false)
 		{
 			Sleep(500);
+
+			bMonsterDead = IsMonsterDead(monster);
+			if (bMonsterDead == true)
+			{
+				Sleep(500);
+				system("cls");
+				if (bBoss == false)
+				{
+					cout << monster->getName() << "을(를) 쓰러트렸다!!!" << endl;
+					//Exp 셋팅
+					{
+						int tempExp = monster->dropEXP(player->getLevel());
+						cout << "EXP를 " << tempExp << "의 EXP를 얻었습니다!!!" << endl;
+						player->addExperience(tempExp);
+						player->checkLevelUp();
+					}
+					//Get Gold
+					{
+						int tmpeGold = monster->dropGold();
+						cout << tmpeGold << " Gold를 획득했다!" << endl;
+						player->addGold(tmpeGold);
+					}
+					for (Item* item : monster->dropItem())
+					{
+						cout << item->getName() << "을(를) 획득했! 운이 좋았어!" << endl;
+						player->pushItem(item);
+					}
+				}
+			}
+
 			Attack(monster, 1);
 			if (IsPlayerDead() == true)
 				bPlayerDead = true;
@@ -200,6 +213,7 @@ void GameMGR::Battle()
 		system("cls");
 	}
 	PlayerDead();
+	BossDead(monster);
 	delete monster;
 	monster = nullptr;
 }
@@ -325,20 +339,19 @@ void GameMGR::StartGame(bool bDebug)
 			break;
 		cout << "잘못된 숫자입니다. 다시 입력해주세요." << endl;
 	}
-
+	
 	switch (temp)
 	{
 	case 1:
+		cin.ignore(numeric_limits<streamsize>::max(),'\n');
 		Sleep(1000);
 		system("cls");
 		InitCharacter();
 		Play();
-		if (bPlayerDead == true)
-			RestartGame();
+		RestartGame();
 		break;
 	case 2:
-		cout << "(게임 종료)" << endl;
-		Sleep(700);
+		EndGame();
 		break;
 	}
 }
@@ -346,9 +359,20 @@ void GameMGR::StartGame(bool bDebug)
 void GameMGR::InitCharacter()
 {
 	string name{};
+	bBoss = false;
+	bPlayerDead = false;
 	cout << "모험가님의 이름은 무엇입니까? (10자 이내)" << endl;
 	cout << "(*입력) " << endl;
-	cin >> name;
+	while (true)
+	{
+		getline(cin, name);
+
+		if(name.empty() == false)
+			break;
+		cout << "다시 입력해주세요." << endl;
+		cout << "(*입력) " << endl;
+	}
+
 	if (name.size() > 10)
 		name.erase(10, name.size());
 	player = Character::getInstance();
@@ -361,7 +385,7 @@ void GameMGR::PrintCharacterInfo()
 	player->displayStatus();
 }
 
-void GameMGR::Play()
+void GameMGR::Play(int* temp)
 {
 	Sleep(1000);
 	system("cls");
@@ -384,12 +408,17 @@ void GameMGR::Play()
 			ExitGame(data);
 			if (data >= 1 && data <= 5)
 				break;
+			if(data == 0 && bDebugMode == true)
+				break;
 			cout << "잘못된 숫자입니다. 다시 입력해주세요." << endl;
 		}
 		Sleep(500);
 		system("cls");
 		switch (data)
 		{
+		case 0:
+			GoFromDebugModeToBoss();
+			break;
 		case 1:
 			Battle();
 			break;
@@ -403,16 +432,21 @@ void GameMGR::Play()
 			DisplayInventory();
 			break;
 		case 5:
-			
-			cout << "게임을 종료합니다..." << endl;
-			cout << "다음에 다시 만나요, 모험가님." << endl;
-			cout << "(게임종료)" << endl;
+			if (temp != nullptr)
+				*temp = 5;
+			EndGame();
 			break;
 		}
 
 		if (bPlayerDead == true)
 			break;
+		
+		else if(bBoss == true)
+			break;
+		
 	}
+
+
 }
 
 void GameMGR::Attack(Monster* monster, int index)
@@ -448,27 +482,101 @@ void GameMGR::PlayerDead()
 	if (bPlayerDead == false)
 		return;
 	cout << player->getName() << "이 죽었습니다!!!" << endl;
+	Sleep(800);
+	cout << "이대로 Text 세계의 평화는 어떻게 되는 것인가....." << endl;
+	Sleep(1000);
+	system("cls");
+}
+
+void GameMGR::BossDead(Monster* monster)
+{
+	if(bBoss == false)
+		return;
+	if(bPlayerDead == true)
+		return;
+
+	cout << monster->getName() << "을(를) 쓰러트렸다!!!" << endl;
+	cout << "정말 쉽지 않은 싸움이었지만 해냈어...!" << endl;
+	cout << "//" << endl;
+	Sleep(800);
+
+	cout << "==================================" << endl;
+	cout << "그리하여, 세상은 Text용사" << endl;
+	Sleep(800);
+	cout << player->getName()<<"의 활약으로" << endl;
+	Sleep(800);
+	cout << "평화를 되찾았다..." << endl;
+	cout << "==================================" << endl;
+	Sleep(800);
+	system("cls");
+	
 }
 
 void GameMGR::RestartGame()
 {
-	if (bPlayerDead == false)
+	if (bPlayerDead == false && bBoss == false)
 		return;
 
 	if (bDebugMode == false)
 	{
-		player->DeleteInstance();
-		player = nullptr;
+		PlayerDelete();
 		StartGame();
 	}
 	else
 	{
-		while (bEndDebug == false)
+		int temp{};
+		while (bEndDebug == false && temp != 5)
 		{
 			cout << "디버깅 모드에선 죽지 않습니다" << endl;
 			bPlayerDead = false;
+			bBoss = false;
 			player->addHealth(player->getMaxHealth());
-			Play();
+			Play(&temp);
 		}
+	}
+}
+
+void GameMGR::PlayerDelete()
+{
+	player->DeleteInstance();
+	player = nullptr;
+}
+
+void GameMGR::PrintDebug()
+{
+	if (bDebugMode == false)
+		return;
+	
+	cout << "-----Debuging Mode-----" << endl;
+	cout << "종료하시려면 9를 누르세요" << endl;
+	cout << "보스로 바로 가시려면 0을 누르세요" << endl;
+}
+
+void GameMGR::ExitGame(int index)
+{
+	if (bDebugMode == true && index == 9)
+	{
+		cout << "강제 종료" << endl;
+		exit(1);
+	}
+}
+
+void GameMGR::EndGame()
+{
+	system("cls");
+	cout << "게임을 종료합니다..." << endl;
+	cout << "다음에 다시 만나요, 모험가님." << endl;
+	cout << "(게임종료)" << endl;
+	Sleep(700);
+}
+
+void GameMGR::GoFromDebugModeToBoss()
+{
+	if(bDebugMode == false && player != nullptr)
+		return;
+	while (player->getLevel() != 10)
+	{
+		player->addExperience(100.0f);
+		player->checkLevelUp();
 	}
 }
