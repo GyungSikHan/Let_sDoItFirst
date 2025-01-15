@@ -98,7 +98,7 @@ void GameMGR::Battle()
 	int tempAttack{};
 	while (bMonsterDead == false && bPlayerDead == false && bRun == false)
 	{
-		bool bUseItem{};
+		bool bUseItem = true;
 		cout << "============== 전투 ==============" << endl;
 		cout << "----------------------------------" << endl;
 		cout << "[Player ~ "<<player->getName()<<"] HP : "<<player->getHealth()<<"/"<<player->getMaxHealth() << " 공격력 : "<<player->getAttack() << endl;
@@ -180,14 +180,13 @@ void GameMGR::Battle()
 			cout << player->getName() << "은(는) " <<monster->getName()<<"(몬스터이름)(으)로부터 무사히 도망쳤다..." << endl;
 			break;
 		}
-		if (bRun == false && bMonsterDead == false && bUseItem==true)
+		if (bRun == false && bMonsterDead == false)
 		{
-			Sleep(1000);
 			Attack(monster, 1);
 			if (IsPlayerDead() == true)
 				bPlayerDead = true;
 		}
-		Sleep(1500);
+		Sleep(2000);
 		system("cls");
 	}
 	if(bUseAttackBoost == true)
