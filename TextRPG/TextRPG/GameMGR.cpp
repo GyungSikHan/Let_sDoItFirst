@@ -182,11 +182,12 @@ void GameMGR::Battle()
 		}
 		if (bRun == false && bMonsterDead == false)
 		{
+			Sleep(500);
 			Attack(monster, 1);
 			if (IsPlayerDead() == true)
 				bPlayerDead = true;
 		}
-		Sleep(2000);
+		Sleep(1000);
 		system("cls");
 	}
 	if(bUseAttackBoost == true)
