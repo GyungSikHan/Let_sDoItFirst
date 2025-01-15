@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="GameMGR" Collapsed="true">
+    <Position X="12.75" Y="3.5" Width="3.5" />
+    <TypeIdentifier>
+      <HashCode>AAADAICBIECEEAAAIAAQDAAwFIBAAEABgAQiAAQQgEA=</HashCode>
+      <FileName>GameMGR.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Shop" Collapsed="true">
+    <Position X="18" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAEAAAAAIAAAAAAAAAACAACCAAAAAAAAAggAAAA=</HashCode>
+      <FileName>Shop.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Item" Collapsed="true">
+    <Position X="13.75" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAgAAAAAAAABAAAAAAAAAABAAEAAAAAAA=</HashCode>
+      <FileName>Item.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AttackBoost" Collapsed="true">
+    <Position X="12.5" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAACAAAAAgAACAAAAABAAAAAEAAAAhAAEAAAAAAA=</HashCode>
+      <FileName>AttackBoost.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HealthPotion" Collapsed="true">
+    <Position X="15" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAACAAAAQgAAAAAAAABAAAAAEAAABBBAEAAAAAAA=</HashCode>
+      <FileName>HealthPotion.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Character" Collapsed="true">
+    <Position X="12.75" Y="6" Width="3.5" />
+    <TypeIdentifier>
+      <HashCode>BABhBSAIAAQgAQAABAEAEAAQECNEAQXCIABkICCAKAk=</HashCode>
+      <FileName>Character.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Monster" Collapsed="true">
+    <Position X="7.25" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAACAAAAAAAIAAAAAAAAABAAAADCIAAEAAAgAAA=</HashCode>
+      <FileName>Monster.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BossMonster" Collapsed="true">
+    <Position X="3.75" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAACAAAAAAAIAAAAAAgAABAEAADCIAAEAAAgAAg=</HashCode>
+      <FileName>BossMonster.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Orc" Collapsed="true">
+    <Position X="7.25" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAACAAAAAAAIAAAAAAAAABAEAADiIAAEAAAgAAg=</HashCode>
+      <FileName>Orc.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Slime" Collapsed="true">
+    <Position X="9" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAACAAAAAAAIAAAAAAAAABAEAADCIAAEAAAiAAg=</HashCode>
+      <FileName>Slime.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Troll" Collapsed="true">
+    <Position X="10.75" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAACAAAAAAAIAAAAAAAAABAEAADCIAAEABAgAAg=</HashCode>
+      <FileName>Troll.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Goblin" Collapsed="true">
+    <Position X="5.5" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAACAAAAAAAIAAAAAAAAABAMAADCIAAEAAAgAAg=</HashCode>
+      <FileName>Goblin.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="맑은 고딕" Size="9" />
+</ClassDiagram>
