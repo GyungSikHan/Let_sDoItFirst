@@ -207,12 +207,12 @@ void GameMGR::Battle()
 void GameMGR::VisitShop()
 {
 
-	shop->displayItems();
 
 	int index{};
 	int index2{};
 	while (index != 3)
 	{
+		shop->displayItems();
 		cout << "어서오세요, 무엇을 하시겠습니까? (소지금 : "<< player->getGold()<<" Gold)"<<endl;
 		cout<<"1. 아이템 구매" << endl;
 		cout << "2. 아이템 판매" << endl;
