@@ -171,7 +171,7 @@ void GameMGR::Battle()
 			bRun = true;
 			bBoss = false;
 			cout<<"비록 지금은 도망치지만... 다음에 다시 만날 때를 각오해라 !!!"<<endl;
-			cout << player->getName() << "은(는) " <<monster->getName()<<"(몬스터이름)(으)로부터 무사히 도망쳤다..." << endl;
+			cout << player->getName() << "은(는) " <<monster->getName()<<"(으)로부터 무사히 도망쳤다..." << endl;
 			break;
 		}
 		if (bRun == false)
