@@ -3,6 +3,7 @@
 
 int main()
 {
+	srand(time(nullptr));
   GameMGR::Create();
   GameMGR::GetInstance()->StartGame(true);
 

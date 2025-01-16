@@ -63,7 +63,7 @@ Monster* GameMGR::GenerateMonster(int level)
 		return monster;
 		break;
 	default:
-		ran = (int)(rand() % 3);
+		ran = (int)(rand() % 4);
 		break;
 	}
 
@@ -116,15 +116,20 @@ void GameMGR::Battle()
 		cout<<"2. 아이템 사용하기"<<endl;
 		cout<<"3. 도망가기"<<endl;
 		cout<<"=================================="<<endl;
-		cout<<"(*입력)"<<endl;
+		cout << "(*입력) ";
 
 		while (true)
 		{
 			cin >> index;
-			if(index >= 1 && index <= 3)
+			if (cin.fail())
+			{
+				cin.clear();
+				cin.ignore(numeric_limits<streamsize>::max(), '\n');
+				cout << "잘못된 입력입니다. 다시 입력해주세요" << endl;
+				cout << "(*입력) ";
+			}
+			else if(index >= 1 && index <= 3)
 				break;
-			cout << "잘못된 숫자입니다. 다시 입력해주세요." << endl;
-			cout << "(*입력)" << endl;
 		}
 		switch (index)
 		{
@@ -139,9 +144,14 @@ void GameMGR::Battle()
 			while (true)
 			{
 				cin >> index2;
-				if(index2 >= 1 && index2 <= 3)
+				if (cin.fail())
+				{
+					cin.clear();
+					cin.ignore(numeric_limits<streamsize>::max(), '\n');
+					cout << "잘못된 입력입니다. 다시 입력해주세요. : (입력)" << endl;
+				}
+				else if(index2 >= 1 && index2 <= 3)
 					break;
-				cout << "잘못된 숫자입니다. 다시 입력해주세요. : (입력)" << endl;
 			}
 			if (index2 == 3)
 			{
@@ -237,10 +247,16 @@ void GameMGR::VisitShop()
 		while (true)
 		{
 			cin >> index;
-			if(index >= 1 && index <= 3)
+			if (cin.fail())
+			{
+				cin.clear();
+				cin.ignore(numeric_limits<streamsize>::max(), '\n');
+				cout << "잘못된 입력입니다. 다시 입력해주세요" << endl;
+				cout << "(입력)";
+			}
+			else if(index >= 1 && index <= 3)
 				break;
-			cout << "잘못된 숫자입니다. 다시 입력해주세요." << endl;
-			cout << "(입력)";
+			
 		}
 		cout << "//" << endl;
 
@@ -252,10 +268,15 @@ void GameMGR::VisitShop()
 			while (true)
 			{
 				cin >> index2;
-				if (index2 >= 1 && index2 <= 3)
+				if (cin.fail())
+				{
+					cin.clear();
+					cin.ignore(numeric_limits<streamsize>::max(), '\n');
+					cout << "잘못된 입력입니다. 다시 입력해주세요" << endl;
+					cout << "(입력)";
+				}
+				else if (index2 >= 1 && index2 <= 3)
 					break;
-				cout << "잘못된 숫자입니다. 다시 입력해주세요." << endl;
-				cout << "(입력)";
 			}
 			cout << "//" << endl;
 			if (index2 == 3)
@@ -282,10 +303,15 @@ void GameMGR::VisitShop()
 			while (true)
 			{
 				cin >> index2;
+				if (cin.fail())
+				{
+					cin.clear();
+					cin.ignore(numeric_limits<streamsize>::max(), '\n');
+					cout << "잘못된 입력입니다. 다시 입력해주세요" << endl;
+					cout << "(입력)";
+				}
 				if (index2 >= 1 || index2 <= 3)
 					break;
-				cout << "잘못된 숫자입니다. 다시 입력해주세요." << endl;
-				cout << "(입력)";
 			}
 			if(index2 == 3)
 			{
@@ -336,9 +362,14 @@ void GameMGR::StartGame(bool bDebug)
 	{
 		cin >> temp;
 		ExitGame(temp);
-		if (temp == 1 || temp == 2)
+		if (cin.fail())
+		{
+			cin.clear();
+			cin.ignore(numeric_limits<streamsize>::max(), '\n');
+			cout << "잘못된 입력입니다. 다시 입력해주세요" << endl;
+		}
+		else if (temp == 1 || temp == 2)
 			break;
-		cout << "잘못된 숫자입니다. 다시 입력해주세요." << endl;
 	}
 	
 	switch (temp)
@@ -407,11 +438,15 @@ void GameMGR::Play(int* temp)
 		{
 			cin >> data;
 			ExitGame(data);
-			if (data >= 1 && data <= 5)
+			if (cin.fail())
+			{
+				cin.clear();
+				cin.ignore(numeric_limits<streamsize>::max(), '\n');
+				cout << "잘못된 입력입니다. 다시 입력해주세요" << endl;
+				cout << "(*입력) ";
+			}
+			else if (data >= 1 && data <= 5)
 				break;
-			if(data == 0 && bDebugMode == true)
-				break;
-			cout << "잘못된 숫자입니다. 다시 입력해주세요." << endl;
 		}
 		Sleep(500);
 		system("cls");
