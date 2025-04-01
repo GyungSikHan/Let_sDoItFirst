@@ -445,7 +445,7 @@ void GameMGR::Play(int* temp)
 				cout << "잘못된 입력입니다. 다시 입력해주세요" << endl;
 				cout << "(*입력) ";
 			}
-			else if (data >= 1 && data <= 5)
+			else if (data >= 0/*debugmode가 아니라면 1*/ && data <= 5)
 				break;
 		}
 		Sleep(500);
@@ -615,4 +615,6 @@ void GameMGR::GoFromDebugModeToBoss()
 		player->addExperience(100.0f);
 		player->checkLevelUp();
 	}
+	player->addGold(1000);
+	player->addAttack(1000);
 }
